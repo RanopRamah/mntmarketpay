@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:mntmarketpay/pages/buyer/widget/home-widget/inventory.dart';
 import 'package:mntmarketpay/pages/buyer/widget/home-widget/transaction.dart';
 
-class BuyerHomePage extends StatefulWidget {
-  const BuyerHomePage({
+class MerchantHomePage extends StatefulWidget {
+  const MerchantHomePage({
   super.key,
   });
 
   @override
-  State<BuyerHomePage> createState() => _BuyerHomePageState();
+  State<MerchantHomePage> createState() => _MerchantHomePageState();
 }
 
-class _BuyerHomePageState extends State<BuyerHomePage> {
+class _MerchantHomePageState extends State<MerchantHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +50,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                                       ),
                                     ),
                                     Text(
-                                      'Raffi Nauval',
+                                      'Janji Jiwa - IOH',
                                       style: TextStyle(
                                         fontFamily: 'DM Sans',
                                         fontWeight: FontWeight.w700,
