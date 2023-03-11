@@ -41,6 +41,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   bcrypt: ^1.1.3
   http: ^0.13.5
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,9 @@ flutter:
      - assets/images/expenses.png
      - assets/images/success.png
      - assets/images/failed.png
+     - assets/images/backspace.png
+     - assets/images/store-icon.png
+     - assets/images/withdraw.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

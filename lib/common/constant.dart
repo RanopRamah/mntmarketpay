@@ -18,7 +18,7 @@ class BNavbarIcons {
   static const home = 'assets/images/home.png';
   static const history = 'assets/images/history.png';
   static const pay = 'assets/images/pay.png';
-  static const inventory = 'assets/images/inventory.png';
+  static const withdraw = 'assets/images/withdraw.png';
   static const profile = 'assets/images/profile.png';
 }
 
@@ -66,4 +66,11 @@ class LoginPageColor {
   static const agreement = 0xFF000000;
   static const textFieldBg = 0xFFD9D9D9;
   static const submitBg = 0xFFE8E0E0;
+}
+
+/* --  AmountPage Section -- */
+
+class AmountImages {
+  static const store = 'assets/images/store-icon.png';
+  static const backspace = 'assets/images/backspace.png';
 }
