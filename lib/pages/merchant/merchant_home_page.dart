@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/buyer/widget/home-widget/inventory.dart';
-import 'package:mntmarketpay/pages/buyer/widget/home-widget/transaction.dart';
+
+import 'package:mntmarketpay/pages/merchant/widget/merchant-home-widget/transaction.dart';
 
 class MerchantHomePage extends StatefulWidget {
   const MerchantHomePage({
@@ -73,6 +73,87 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
                             ]
                         ),
                       ),
+
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: double.infinity,
+                              height: 298,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/back_qr.png')
+                                )
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset('assets/images/test_qr.png'),
+                                  Text('Janji Jiwa IOH',style: TextStyle(
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 24,
+                                    color: Color(0xff141414)
+                                  ),),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text('081287138898',style: TextStyle(
+                                      fontFamily: 'DM Sans',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 20,
+                                      color: Color(0xffb6aaaa)
+                                  ),),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(right: 20,left: 20),
+                              child: Column(
+                                children: [
+                            Row(
+                              children: <Widget>[
+                                Image.asset('assets/images/wallet.png',width: 16,height: 14,),
+                                SizedBox(width: 10,),
+                                Text('Balance',style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xffaaaaaa)
+                                ),),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Text('Rp',style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xff868383)
+                                ),),
+                                SizedBox(width: 10,),
+                                Text('12,000,000',style: TextStyle(
+                                    fontSize: 42,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xff000000)
+                                ),),
+                              ],
+                            ),
+                          ],
+  )),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            TransactionHistory()
+                        ]),
+                      ),
+
 
                     ]
                 )

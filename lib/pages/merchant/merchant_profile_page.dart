@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/buyer/widget/home-widget/inventory.dart';
-import 'package:mntmarketpay/pages/buyer/widget/home-widget/transaction.dart';
+
 
 class MerchantProfilePage extends StatefulWidget {
   const MerchantProfilePage({

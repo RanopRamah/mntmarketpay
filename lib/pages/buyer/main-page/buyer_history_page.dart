@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/buyer/widget/history-widget/transactionlist.dart';
+import 'package:mntmarketpay/pages/buyer/widget/buyer-history-widget/transactionlist.dart';
 
 
 class BuyerHistoryPage extends StatefulWidget {
