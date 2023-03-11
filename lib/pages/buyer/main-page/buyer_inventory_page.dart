@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/buyer/home-inventory/inventorylist.dart';
-import 'package:mntmarketpay/pages/buyer/home-widget/inventory.dart';
+import 'package:mntmarketpay/pages/buyer/widget/inventory-widget/inventorylist.dart';
 
 class BuyerInventoryPage extends StatefulWidget {
   const BuyerInventoryPage({super.key,});

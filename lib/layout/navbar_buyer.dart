@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
-import 'package:mntmarketpay/pages/buyer/buyer_history_page.dart';
-import 'package:mntmarketpay/pages/buyer/buyer_home_page.dart';
-import 'package:mntmarketpay/pages/buyer/buyer_inventory_page.dart';
-import 'package:mntmarketpay/pages/buyer/buyer_profile_page.dart';
-import 'package:mntmarketpay/pages/buyer/buyer_scan_page.dart';
+import 'package:mntmarketpay/pages/buyer/main-page/buyer_history_page.dart';
+import 'package:mntmarketpay/pages/buyer/main-page/buyer_home_page.dart';
+import 'package:mntmarketpay/pages/buyer/main-page/buyer_inventory_page.dart';
+import 'package:mntmarketpay/pages/buyer/main-page/buyer_profile_page.dart';
+import 'package:mntmarketpay/pages/buyer/main-page/buyer_scan_page.dart';
 
 class BuyerNavBar extends StatefulWidget {
   const BuyerNavBar({Key? key}) : super(key: key);

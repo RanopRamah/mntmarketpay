@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// Anything that common we used on any page
 /// including Strings, Color Hex, and others...
 /// just put it right on here
