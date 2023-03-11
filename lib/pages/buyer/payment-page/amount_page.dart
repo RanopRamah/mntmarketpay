@@ -34,13 +34,14 @@ class _AmountPageState extends State<AmountPage> {
                     decoration: const BoxDecoration(
                       color: Color(0xFF6F75EA),
                       borderRadius: BorderRadius.all(Radius.circular(21)),
+                      image: DecorationImage(image: AssetImage(AmountPageImages.bg))
                     ),
                     padding: const EdgeInsets.only(left: 13),
                     width: 342,
                     height: 92,
                     child: Row(
                       children: [
-                        Image.asset(AmountImages.store, width: 61, height: 61),
+                        Image.asset(AmountPageImages.store, width: 61, height: 61),
                         const SizedBox(width: 9),
                         Padding(
                           padding: const EdgeInsets.only(top: 20.98),
@@ -56,8 +57,9 @@ class _AmountPageState extends State<AmountPage> {
                                   fontSize: 20,
                                 ),
                               ),
+                              const SizedBox(height: 4),
                               Text(
-                                'DPID: ${widget.idSeller}',
+                                'Merchant ID: ${widget.idSeller}',
                                 style: const TextStyle(
                                   color: Color(0xFFC5C7F1),
                                   fontFamily: 'SF Pro Display',
@@ -184,7 +186,7 @@ class _AmountPageState extends State<AmountPage> {
                                           padding: const EdgeInsets.all(24),
                                           child: Center(
                                             child: Image.asset(
-                                                AmountImages.backspace,
+                                                AmountPageImages.backspace,
                                                 width: 38,
                                                 height: 32),
                                           ),

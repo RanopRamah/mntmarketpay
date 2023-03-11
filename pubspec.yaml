@@ -84,6 +84,9 @@ flutter:
      - assets/images/backspace.png
      - assets/images/store-icon.png
      - assets/images/withdraw.png
+     - assets/images/exit.png
+     - assets/images/select.png
+     - assets/images/amount_bg.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
