@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mntmarketpay/pages/buyer/language_page.dart';
 
 class BuyerProfilePage extends StatefulWidget {
   const BuyerProfilePage({super.key,});
@@ -292,25 +293,32 @@ SizedBox(
                 color: Colors.white
             ),
             padding: EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 10),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Language',style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'DM Sans',
-                      color: Color(0xff000000)
-                  ),),
-                  Text('English (United States)',style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'DM Sans',
-                      color: Color(0xffc3c3c3)
-                  ),),
-                ]
-              )
-            )
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LanguagePage()));
+                });
+              },
+              child: Center(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Language',style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'DM Sans',
+                            color: Color(0xff000000)
+                        ),),
+                        Text('English (United States)',style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'DM Sans',
+                            color: Color(0xffc3c3c3)
+                        ),),
+                      ]
+                  )
+              ),
+            ),
         ),
         SizedBox(
           height: 15,

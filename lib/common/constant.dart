@@ -70,7 +70,36 @@ class LoginPageColor {
 
 /* --  AmountPage Section -- */
 
-class AmountImages {
+class AmountPageImages {
   static const store = 'assets/images/store-icon.png';
   static const backspace = 'assets/images/backspace.png';
+  static const bg = 'assets/images/amount_bg.png';
+}
+
+/* --  LanguagePage Section -- */
+
+class LanguagePageImages {
+  static const exit = 'assets/images/exit.png';
+  static const select = 'assets/images/select.png';
+}
+
+class LanguagePageStyle {
+  static const TextStyle title = TextStyle(
+    color: Color(0xFF141414),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 28,
+  );
+  static const TextStyle selection = TextStyle(
+    color: Color(0xFF141414),
+    fontFamily: Fonts.mainFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+  static const TextStyle submit = TextStyle(
+    color: Color(0xFFFFFFFF),
+    fontFamily: Fonts.mainFamily,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 }
