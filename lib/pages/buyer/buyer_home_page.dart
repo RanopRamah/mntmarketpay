@@ -24,7 +24,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 30, right: 30),
+                        padding: EdgeInsets.only(left: 30, right: 30,top: 30),
                         width: double.infinity,
                         height: 182,
                         decoration: BoxDecoration(
@@ -123,7 +123,7 @@ SizedBox(
                             SizedBox(
                               height: 30,
                             ),
-                            InventoryList()
+                            Inventory()
                           ],
                         ),
                       )

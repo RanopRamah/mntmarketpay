@@ -159,14 +159,17 @@ Widget TransactionHistory() {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          Container(
+                            width: 120,
+                          child: Text(
                             'StrongBot Shop',
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'DM Sans',
                                 color: Color(0xff000000)),
-                          ),
+                          ),),
                           Text(
                             '25 March - 19.08',
                             style: TextStyle(
@@ -177,7 +180,9 @@ Widget TransactionHistory() {
                           ),
                         ],
                       ),
-                      Row(
+                      Container(
+                      child: SingleChildScrollView(
+                          child:Row(
                         children: <Widget>[
                           Text(
                             'Rp',
@@ -196,6 +201,7 @@ Widget TransactionHistory() {
                                 color: Color(0xff000000)),
                           ),
                         ],
+                      ))
                       )
                     ],
                   ),

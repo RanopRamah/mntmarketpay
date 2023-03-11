@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-Widget Inventory() {
+Widget InventoryList() {
   return Container(
 
     width: double.infinity,
-    height: 313,
+    height: 417,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
@@ -24,7 +24,7 @@ Widget Inventory() {
 
           padding: EdgeInsets.only(left: 30,top: 20),
           child: Text(
-            'Inventory',
+            'Transaction History',
             style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
@@ -33,11 +33,11 @@ Widget Inventory() {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
         Container(
             padding: EdgeInsets.only(right: 15, left: 15),
-            height: 190,
+            height: 342,
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
@@ -260,17 +260,7 @@ Widget Inventory() {
                 )
               ],
             )),
-        TextButton(onPressed: (){}, child: Container(
-          width: double.infinity,
-          height: 46,
-          child: Center(
-            child: Text('view all', style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'DM Sans' ,
-                color: Color(0xff000000)),),
-          ),
-        ))
+
       ],
     ),
   );
