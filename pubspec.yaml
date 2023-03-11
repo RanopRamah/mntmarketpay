@@ -75,6 +75,7 @@ flutter:
      - assets/images/profile.png
      - assets/images/wallet.png
      - assets/images/copy.png
+     - assets/images/shop.png
      - assets/images/logout.png
      - assets/images/topup.png
      - assets/images/expenses.png
