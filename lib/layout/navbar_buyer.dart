@@ -62,7 +62,7 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(BNavbarIcons.withdraw, height: 38, width: 38, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
+              child: Image.asset(BNavbarIcons.withdraw, height: 31.1, width: 32, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
             ),
             label: 'Withdraw',
           ),

@@ -54,14 +54,14 @@ class _SellerNavbarState extends State<SellerNavbar> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(BNavbarIcons.withdraw, height: 38, width: 38, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
+              child: Image.asset(BNavbarIcons.withdraw, height: 31.1, width: 32, color: _selectedPage == 2 ? const Color(0xFF6340AD) : null),
             ),
             label: 'Withdraw',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(BNavbarIcons.profile, height: 29, width: 29, color: _selectedPage == 4 ? const Color(0xFF6340AD) : null),
+              child: Image.asset(BNavbarIcons.profile, height: 29, width: 29, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
             ),
             label: 'Profile',
           ),

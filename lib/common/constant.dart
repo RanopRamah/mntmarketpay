@@ -12,7 +12,7 @@ class Fonts {
   static const mainFamily = 'DM Sans';
 }
 
-/* -- Buyer NavBar -- */
+/* -- BuyerNavBar -- */
 
 class BNavbarIcons {
   static const home = 'assets/images/home.png';
@@ -24,7 +24,7 @@ class BNavbarIcons {
   static const profile = 'assets/images/profile.png';
 }
 
-/* --  HomePage Section -- */
+/* --  BuyerHomePage Section -- */
 
 class HomePageStrings {
   static const greetings = 'Good Morning,';
@@ -33,13 +33,11 @@ class HomePageStrings {
   static const inventory = 'Inventory';
   static const more = 'View All';
 }
-
 class HomePageImage {
   static const copy = 'assets/image/copy.png';
   static const wallet = 'assets/image/wallet.png';
   static const headerBg = 'assets/image/headerBg.png';
 }
-
 class HomePageColor {
   static const wierdRed = 0xFFC5A2A2;
   static const gray = 0xFFAAAAAA;
@@ -50,24 +48,59 @@ class HomePageColor {
 /* --  LoginPage Section -- */
 
 class LoginPageStrings {
-  static const title = 'The Easier Way To Pay';
+  static const title = 'Streamline your';
+  static const title2 = 'payments with ease';
+  static const subtitle = 'Say goodbye to the hassle and enjoy';
+  static const subtitle2 = 'a simplified payment experience';
   static const instruction = 'Enter your phone number to continue';
-  static const countryCode = '+62';
-  static const agreement = 'By continuing, you are agree to the terms and conditions';
+  static const agreement = 'By continuing, you are agree to Indosat Ooredo';
+  static const agreement2 = 'Terms of Service';
 }
-
 class LoginPageImage {
-  static const indosat = 'assets/image/indosat.png';
-  static const submit = 'assets/image/submit.png';
+  static const bg = 'assets/images/login-bg.png';
+  static const countryCode = 'assets/images/country-code.png';
+  static const submit = 'assets/images/submit.png';
+  static const indosat = 'assets/images/indosat.png';
 }
-
 class LoginPageColor {
   static const title = 0xFF000000;
   static const instruction = 0xFF000000;
-  static const countryCode = 0xFF000000;
   static const agreement = 0xFF000000;
   static const textFieldBg = 0xFFD9D9D9;
   static const submitBg = 0xFFE8E0E0;
+}
+
+class LoginPageStyle {
+  static const TextStyle title = TextStyle(
+    color: Color(0xFF141414),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 34,
+  );
+  static const TextStyle subtitle = TextStyle(
+    color: Color(0xFF9A9A9A),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
+  static const TextStyle instruction = TextStyle(
+    color: Color(0xFF635F5F),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
+  static const TextStyle agreement = TextStyle(
+    color: Color(0xFFB2ADAD),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+  );
+  static const TextStyle agreement2 = TextStyle(
+    color: Color(0xFF6340AD),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+  );
 }
 
 /* --  AmountPage Section -- */
@@ -84,7 +117,6 @@ class LanguagePageImages {
   static const exit = 'assets/images/exit.png';
   static const select = 'assets/images/select.png';
 }
-
 class LanguagePageStyle {
   static const TextStyle title = TextStyle(
     color: Color(0xFF141414),
