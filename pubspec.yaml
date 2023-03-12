@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.0.18
   qr_code_scanner: ^1.0.1
   pin_code_fields: ^7.4.0
+  searchfield: ^0.7.5
   bcrypt: ^1.1.3
   http: ^0.13.5
   intl: ^0.17.0
@@ -92,6 +93,7 @@ flutter:
      - assets/images/topupnav.png
      - assets/images/transaction.png
      - assets/images/trade.png
+     - assets/images/search-all.png
      - assets/images/country-code.png
      - assets/images/submit.png
      - assets/images/login-bg.png

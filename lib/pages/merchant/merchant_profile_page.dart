@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mntmarketpay/pages/buyer/language_page.dart';
+import 'package:mntmarketpay/pages/language_page.dart';
 
 class MerchantProfilePage extends StatefulWidget {
   const MerchantProfilePage({super.key,});
@@ -290,7 +290,7 @@ class _MerchantProfilePageState extends State<MerchantProfilePage> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LanguagePage()));
+                                Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LanguagePage('S')));
                               });
                             },
                             child: Center(

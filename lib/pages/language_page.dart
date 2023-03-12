@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
+import 'package:mntmarketpay/layout/navbar_admin.dart';
 import 'package:mntmarketpay/layout/navbar_buyer.dart';
+import 'package:mntmarketpay/layout/navbar_seller.dart';
 
 class LanguagePage extends StatefulWidget {
-  const LanguagePage({Key? key}) : super(key: key);
+  const LanguagePage(this.whichItCame, {super.key}) : super();
+
+  final whichItCame;
 
   @override
   State<LanguagePage> createState() => _LanguagePageState();
@@ -11,6 +15,21 @@ class LanguagePage extends StatefulWidget {
 
 class _LanguagePageState extends State<LanguagePage> {
   bool isID = true;
+  Widget? nav;
+
+  @override
+  void initState() {
+    if (widget.whichItCame == 'B') {
+      nav = const BuyerNavBar();
+    } else if (widget.whichItCame == 'S') {
+      nav = const SellerNavbar();
+    } else if (widget.whichItCame == 'A') {
+      nav = const AdminNavBar();
+    } else {
+      nav = null;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +46,14 @@ class _LanguagePageState extends State<LanguagePage> {
               onTap: () {
                 setState(() {
                   Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (ctx) => const BuyerNavBar()), (route) => false,
+                      MaterialPageRoute(builder: (ctx) => nav!), (route) => false,
                   );
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(13),
-                  border: Border.all(width: 1,color: Color(0xffd2d2d2))
+                  border: Border.all(width: 1,color: const Color(0xffd2d2d2))
                 ),
                 margin: const EdgeInsets.only(bottom: 24),
                 child: Image.asset(
@@ -60,7 +79,7 @@ class _LanguagePageState extends State<LanguagePage> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.05),
                       blurRadius: 6.0,
@@ -90,7 +109,7 @@ class _LanguagePageState extends State<LanguagePage> {
                decoration: BoxDecoration(
                  color: Colors.white,
                  borderRadius: BorderRadius.circular(12),
-                 boxShadow: [
+                 boxShadow: const [
                    BoxShadow(
                      color: Color.fromRGBO(0, 0, 0, 0.05),
                      blurRadius: 6.0,

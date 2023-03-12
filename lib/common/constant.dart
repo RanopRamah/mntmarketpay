@@ -139,6 +139,8 @@ class LanguagePageStyle {
   );
 }
 
+/* --  AdminPage Section (All) -- */
+
 class AdminPage{
   static const TextStyle title = TextStyle(
     color: Color(0xFF000000),
@@ -206,5 +208,14 @@ class AdminPage{
     fontWeight: FontWeight.w400,
     fontSize: 16,
     );
-
+  static const TextStyle topUpTitle  = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+  );
+}
+class AdminPageStrings {
+  static const title = 'Top Up Dashboard';
+  static const submit = 'Top-Up';
 }

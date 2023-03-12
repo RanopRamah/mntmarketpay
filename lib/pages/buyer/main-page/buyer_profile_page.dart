@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mntmarketpay/pages/buyer/language_page.dart';
+import 'package:mntmarketpay/pages/language_page.dart';
 
 class BuyerProfilePage extends StatefulWidget {
   const BuyerProfilePage({super.key,});
@@ -296,7 +296,7 @@ SizedBox(
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LanguagePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LanguagePage('B')));
                 });
               },
               child: Center(

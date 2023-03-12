@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/layout/navbar_admin.dart';
-import 'package:mntmarketpay/pages/admin/withdraw-page/withdraw_page.dart';
-import 'package:mntmarketpay/pages/login_page.dart';
-
-import 'layout/navbar_admin.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_home_page.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_topup_page.dart';
 
 void main() {
   runApp(const MyApp());
