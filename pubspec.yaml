@@ -89,6 +89,10 @@ flutter:
      - assets/images/exit.png
      - assets/images/select.png
      - assets/images/amount_bg.png
+     - assets/images/country-code.png
+     - assets/images/submit.png
+     - assets/images/login-bg.png
+     - assets/images/indosat.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

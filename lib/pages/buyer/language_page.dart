@@ -11,7 +11,6 @@ class LanguagePage extends StatefulWidget {
 
 class _LanguagePageState extends State<LanguagePage> {
   bool isID = true;
-  bool isEN = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,6 @@ class _LanguagePageState extends State<LanguagePage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  isEN = true;
                   isID = false;
                 });
               },
@@ -60,7 +58,7 @@ class _LanguagePageState extends State<LanguagePage> {
                   child: ListTile(
                     title: const Text('English (United States)', style: LanguagePageStyle.selection),
                     trailing: Visibility(
-                      visible: isEN,
+                      visible: isID ? false : true,
                       child: Image.asset(LanguagePageImages.select, width: 20, height: 15),
                     ),
                   ),
@@ -70,7 +68,6 @@ class _LanguagePageState extends State<LanguagePage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  isEN = false;
                   isID = true;
                 });
               },
@@ -81,7 +78,7 @@ class _LanguagePageState extends State<LanguagePage> {
                   child: ListTile(
                     title: const Text('Bahasa Indonesia', style: LanguagePageStyle.selection),
                     trailing: Visibility(
-                      visible: isID,
+                      visible: isID ? true : false,
                       child: Image.asset(LanguagePageImages.select, width: 20, height: 15),
                     ),
                   ),
