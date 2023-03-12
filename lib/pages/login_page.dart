@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                               )
                           ),
                         ),
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     const SizedBox(height: 20),

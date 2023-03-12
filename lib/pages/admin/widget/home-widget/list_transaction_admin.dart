@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../common/constant.dart';
+import 'package:mntmarketpay/common/constant.dart';
 
 Widget ListTransactionAdmin(){
   return   ListView(

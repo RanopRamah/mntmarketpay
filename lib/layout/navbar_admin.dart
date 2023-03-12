@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
-import 'package:mntmarketpay/pages/admin/admin_home_page.dart';
-import 'package:mntmarketpay/pages/admin/admin_scan_page.dart';
-import 'package:mntmarketpay/pages/admin/admin_topup_page.dart';
-import 'package:mntmarketpay/pages/admin/admin_transaction_page.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_home_page.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_scan_page.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_topup_page.dart';
+import 'package:mntmarketpay/pages/admin/main-page/admin_transaction_page.dart';
 
-import '../pages/admin/admin_account.dart';
+import '../pages/admin/main-page/admin_account.dart';
 
 
 class AdminNavBar extends StatefulWidget {
