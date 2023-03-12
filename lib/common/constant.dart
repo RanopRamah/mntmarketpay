@@ -109,6 +109,7 @@ class AmountPageImages {
   static const store = 'assets/images/store-icon.png';
   static const backspace = 'assets/images/backspace.png';
   static const bg = 'assets/images/amount_bg.png';
+  static const trash = 'assets/images/trash.png';
 }
 
 /* --  LanguagePage Section -- */

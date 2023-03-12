@@ -96,6 +96,7 @@ flutter:
      - assets/images/submit.png
      - assets/images/login-bg.png
      - assets/images/indosat.png
+     - assets/images/trash.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

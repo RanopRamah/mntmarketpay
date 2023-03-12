@@ -266,7 +266,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       borderRadius: BorderRadius.circular(13),
                       boxShadow: [
                         BoxShadow(
-                           color: Color.fromRGBO(0, 0, 0, 0.10),
+                          color: Color.fromRGBO(0, 0, 0, 0.10),
                           blurRadius: 6.0,
                           spreadRadius: 2.0,
                           offset: Offset(0.0, 0.0),
@@ -277,22 +277,22 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const Text('Transaction History', style: AdminPage.titleTransaction,),
-                         const SizedBox(
+                        Text('Transaction History', style: AdminPage.titleTransaction,),
+                        SizedBox(
                           height: 10,
                         ),
-                        SizedBox(
+                        Container(
                           height: 400,
                           child:ListTransactionAdmin(),
                         ),
                         TextButton(
                           onPressed: (){},
                           child: Container(
-                            padding: const EdgeInsets.only(top: 6),
-                            decoration: const BoxDecoration(
+                            padding: EdgeInsets.only(top: 6),
+                            decoration: BoxDecoration(
                               color: Colors.white
                             ),
-                            child: const Center(
+                            child: Center(
                               child: Text('view all',style: AdminPage.viewAll,),
                             ),
                           ),
@@ -302,14 +302,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     )
 
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 35,
                 ),
-                TopupWithdraw(),
-                const SizedBox(
-                  height: 35,
-                ),
-                AccountHistory()
+                TopupWithdraw()
                     ]))
               ],
             ),
