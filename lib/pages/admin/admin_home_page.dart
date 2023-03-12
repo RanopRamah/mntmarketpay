@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/admin/home-widget/list_transaction_admin.dart';
-import 'package:mntmarketpay/pages/admin/home-widget/topup_withdraw.dart';
+import 'package:mntmarketpay/pages/admin/widget/home-widget/accounthistory.dart';
+import 'package:mntmarketpay/pages/admin/widget/home-widget/list_transaction_admin.dart';
+import 'package:mntmarketpay/pages/admin/widget/home-widget/topup_withdraw.dart';
 import '../../common/constant.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -265,7 +266,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       borderRadius: BorderRadius.circular(13),
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.10),
+                           color: Color.fromRGBO(0, 0, 0, 0.10),
                           blurRadius: 6.0,
                           spreadRadius: 2.0,
                           offset: Offset(0.0, 0.0),
@@ -276,22 +277,22 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Transaction History', style: AdminPage.titleTransaction,),
-                        SizedBox(
+                        const Text('Transaction History', style: AdminPage.titleTransaction,),
+                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
+                        SizedBox(
                           height: 400,
                           child:ListTransactionAdmin(),
                         ),
                         TextButton(
                           onPressed: (){},
                           child: Container(
-                            padding: EdgeInsets.only(top: 6),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.only(top: 6),
+                            decoration: const BoxDecoration(
                               color: Colors.white
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text('view all',style: AdminPage.viewAll,),
                             ),
                           ),
@@ -301,10 +302,14 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     )
 
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 35,
                 ),
-                TopupWithdraw()
+                TopupWithdraw(),
+                const SizedBox(
+                  height: 35,
+                ),
+                AccountHistory()
                     ]))
               ],
             ),

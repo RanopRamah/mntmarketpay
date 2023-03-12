@@ -181,5 +181,29 @@ class AdminPage{
     fontWeight: FontWeight.w400,
     fontSize: 20,
     );
+  static const TextStyle createdAccount  = TextStyle(
+    color: Color(0xFF222222),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    );
+  static const TextStyle accountName  = TextStyle(
+    color: Color(0xFF172437),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 20,
+    );
+  static const TextStyle accountNumber  = TextStyle(
+    color: Color(0xFFbebebe),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    );
+  static const TextStyle createdAt  = TextStyle(
+    color: Color(0xFFbebebe),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    );
 
 }

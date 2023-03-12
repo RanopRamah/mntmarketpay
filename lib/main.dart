@@ -6,6 +6,8 @@ import 'package:mntmarketpay/pages/merchant/merchant_home_page.dart';
 import 'package:mntmarketpay/pages/merchant/merchant_withdraw.dart';
 import 'package:mntmarketpay/layout/navbar_seller.dart';
 
+import 'layout/navbar_admin.dart';
+
 void main() {
   runApp(const MyApp());
 }
