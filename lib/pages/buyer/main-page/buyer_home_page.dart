@@ -26,7 +26,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                       Container(
                         padding: EdgeInsets.only(left: 30, right: 30,top: 30),
                         width: double.infinity,
-                        height: 182,
+                        height: 150,
                         decoration: BoxDecoration(
                             color: Color(0xff458EDE),
                             image: DecorationImage(
@@ -120,10 +120,7 @@ SizedBox(
 ),
 
                       TransactionHistory(),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Inventory()
+
                           ],
                         ),
                       )

@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
-import 'package:mntmarketpay/pages/buyer/main-page/buyer_history_page.dart';
-import 'package:mntmarketpay/pages/buyer/main-page/buyer_home_page.dart';
-import 'package:mntmarketpay/pages/buyer/main-page/buyer_withdraw_page.dart';
-import 'package:mntmarketpay/pages/buyer/main-page/buyer_profile_page.dart';
-import 'package:mntmarketpay/pages/buyer/main-page/buyer_scan_page.dart';
+import 'package:mntmarketpay/pages/admin/admin_home_page.dart';
+import 'package:mntmarketpay/pages/admin/admin_scan_page.dart';
+import 'package:mntmarketpay/pages/admin/admin_topup_page.dart';
+import 'package:mntmarketpay/pages/admin/admin_transaction_page.dart';
 
-class BuyerNavBar extends StatefulWidget {
-  const BuyerNavBar({Key? key}) : super(key: key);
+import '../pages/admin/admin_account.dart';
+
+
+class AdminNavBar extends StatefulWidget {
+  const AdminNavBar({Key? key}) : super(key: key);
 
   @override
-  State<BuyerNavBar> createState() => _BuyerNavBarState();
+  State<AdminNavBar> createState() => _AdminNavBarState();
 }
 
-class _BuyerNavBarState extends State<BuyerNavBar> {
+class _AdminNavBarState extends State<AdminNavBar> {
   int _selectedPage = 0;
   static const List<Widget> _pages = <Widget> [
-    BuyerHomePage(),
-    BuyerHistoryPage(),
-    BuyerScanPage(),
-    BuyerWithdrawPage(),
-    BuyerProfilePage(),
+    AdminHomePage(),
+    AdminTransactionPage(),
+    AdminScanPage(),
+    AdminTopupPage(),
+    AdminAccountPage(),
   ];
 
   @override
@@ -48,30 +50,30 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(BNavbarIcons.history, height: 29, width: 29, color: _selectedPage == 1 ? const Color(0xFF6340AD) : null),
+              child: Image.asset(BNavbarIcons.transaction, height: 29, width: 29, color: _selectedPage == 1 ? const Color(0xFF6340AD) : null),
             ),
-            label: 'History',
+            label: 'Transaction',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
               child: Image.asset(BNavbarIcons.pay, height: 29, width: 29, color: _selectedPage == 2 ? const Color(0xFF6340AD) : null),
             ),
-            label: 'Pay',
+            label: 'Scan',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(BNavbarIcons.withdraw, height: 38, width: 38, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
+              child: Image.asset(BNavbarIcons.topup, height: 30, width: 29, color: _selectedPage == 3 ? const Color(0xFF6340AD) : null),
             ),
-            label: 'Withdraw',
+            label: 'Topup',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(10),
               child: Image.asset(BNavbarIcons.profile, height: 29, width: 29, color: _selectedPage == 4 ? const Color(0xFF6340AD) : null),
             ),
-            label: 'Profile',
+            label: 'Accounts',
           ),
         ],
       ),

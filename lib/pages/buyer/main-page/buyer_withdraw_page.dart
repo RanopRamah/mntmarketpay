@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class MerchantWithdrawPage extends StatefulWidget {
-  const MerchantWithdrawPage({
+class BuyerWithdrawPage extends StatefulWidget {
+  const BuyerWithdrawPage({
   super.key,
   });
 
   @override
-  State<MerchantWithdrawPage> createState() => _MerchantWithdrawPageState();
+  State<BuyerWithdrawPage> createState() => _BuyerWithdrawPageState();
 }
 
-class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
+class _BuyerWithdrawPageState extends State<BuyerWithdrawPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
                                       ),
                                     ),
                                     Text(
-                                      'Janji Jiwa - IOH',
+                                      'Raffi Nauval',
                                       style: TextStyle(
                                         fontFamily: 'DM Sans',
                                         fontWeight: FontWeight.w700,
@@ -64,10 +64,15 @@ class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
                                   width: 61,
                                   height: 61,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffF6f6f6),
+                                      color: Color(0xffFFCB0A),
                                       borderRadius: BorderRadius.circular(30)),
                                   child:Center(
-                                    child: Image.asset('assets/images/shop.png',width: 30,height: 30,),)
+                                    child: Text('RN',style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: 'DM Sans',
+                                        color: Colors.white
+                                    ),),)
                               )
                             ]
                         ),
@@ -96,28 +101,24 @@ class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
                               ),
                               child: Column(
                                 children: <Widget>[
-                                  Text('Withdraw QR',style: TextStyle(
-                                    fontFamily: 'DM Sans',
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xff141414),
-                                    fontSize: 24
-                                  ),),
+
 
                                   Container(
+                                    padding: EdgeInsets.only(top: 20,),
                                     width: double.infinity,
-                                    height: 267,
+                                    height: 298,
                                     decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage('assets/images/back_qr.png')
-                                      )
+                                        image: DecorationImage(
+                                            image: AssetImage('assets/images/back_qr.png')
+                                        )
                                     ),
                                     child: Column(
                                       children: <Widget>[
-                                        Image.asset('assets/images/test_qr.png',width: 158,height: 180,),
-                                        Text('Janji Jiwa IOH',style: TextStyle(
+                                        Image.asset('assets/images/test_qr.png',width: 177,height: 201,),
+                                        Text('Raffi Nauval',style: TextStyle(
                                             fontFamily: 'DM Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 21,
+                                            fontSize: 24,
                                             color: Color(0xff141414)
                                         ),),
                                         SizedBox(
@@ -126,7 +127,7 @@ class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
                                         Text('081287138898',style: TextStyle(
                                             fontFamily: 'DM Sans',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 17,
+                                            fontSize: 20,
                                             color: Color(0xffb6aaaa)
                                         ),),
                                       ],
@@ -135,9 +136,9 @@ class _MerchantWithdrawPageState extends State<MerchantWithdrawPage> {
                                 ],
                               ),
                             ),
-SizedBox(
-  height: 20,
-),
+                            SizedBox(
+                              height: 20,
+                            ),
                             Container(
                               padding: EdgeInsets.all(20),
                               decoration: BoxDecoration(
@@ -191,42 +192,42 @@ SizedBox(
                                     padding: EdgeInsets.all(12),
                                     height: 71,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(width: 1,color: Color(0xfff6efef))
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(width: 1,color: Color(0xfff6efef))
                                     ),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
 
-                                              Text('Total Withdraw',style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'DM Sans',
-                                                  color: Color(0xffaaaaaa)
-                                              ),),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
+                                        Text('Total Withdraw',style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'DM Sans',
+                                            color: Color(0xffaaaaaa)
+                                        ),),
+                                        SizedBox(
+                                          height: 3,
+                                        ),
 
-                                          Row(
-                                            children: <Widget>[
-                                              Text('Rp',style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'DM Sans',
-                                                  color: Color(0xff868383)
-                                              ),),
-                                              SizedBox(width: 10,),
-                                              Text('12,000,000',style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: 'DM Sans',
-                                                  color: Color(0xff000000)
-                                              ),),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                        Row(
+                                          children: <Widget>[
+                                            Text('Rp',style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: 'DM Sans',
+                                                color: Color(0xff868383)
+                                            ),),
+                                            SizedBox(width: 10,),
+                                            Text('12,000,000',style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: 'DM Sans',
+                                                color: Color(0xff000000)
+                                            ),),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),

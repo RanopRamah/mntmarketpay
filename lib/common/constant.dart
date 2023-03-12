@@ -17,6 +17,8 @@ class Fonts {
 class BNavbarIcons {
   static const home = 'assets/images/home.png';
   static const history = 'assets/images/history.png';
+  static const transaction = 'assets/images/transaction.png';
+  static const topup = 'assets/images/topupnav.png';
   static const pay = 'assets/images/pay.png';
   static const withdraw = 'assets/images/withdraw.png';
   static const profile = 'assets/images/profile.png';
@@ -102,4 +104,50 @@ class LanguagePageStyle {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+}
+
+class AdminPage{
+  static const TextStyle title = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+  );
+  static const TextStyle titleTransaction = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+  );
+  static const TextStyle transactionName = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+  );
+  static const TextStyle transactionBuySell = TextStyle(
+    color: Color(0xFFa7a3a3),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 13,
+    );
+  static const TextStyle transactionNumAmountUQ = TextStyle(
+    color: Color(0xFF454649),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    );
+  static const TextStyle transactionAmountUQ  = TextStyle(
+    color: Color(0xFF9b9b9b),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    );
+  static const TextStyle viewAll  = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 20,
+    );
+
 }

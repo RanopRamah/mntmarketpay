@@ -89,6 +89,9 @@ flutter:
      - assets/images/exit.png
      - assets/images/select.png
      - assets/images/amount_bg.png
+     - assets/images/topupnav.png
+     - assets/images/transaction.png
+     - assets/images/trade.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -33,6 +33,10 @@ class _LanguagePageState extends State<LanguagePage> {
                 });
               },
               child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13),
+                  border: Border.all(width: 1,color: Color(0xffd2d2d2))
+                ),
                 margin: const EdgeInsets.only(bottom: 24),
                 child: Image.asset(
                   LanguagePageImages.exit,
@@ -55,8 +59,18 @@ class _LanguagePageState extends State<LanguagePage> {
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 16),
-                child: Card(
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                      blurRadius: 6.0,
+                      spreadRadius: 2.0,
+                      offset: Offset(0.0, 0.0),
+                    ),
+                  ],
+                ),
                   child: ListTile(
                     title: const Text('English (United States)', style: LanguagePageStyle.selection),
                     trailing: Visibility(
@@ -66,7 +80,7 @@ class _LanguagePageState extends State<LanguagePage> {
                   ),
                 ),
               ),
-            ),
+            
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -76,8 +90,18 @@ class _LanguagePageState extends State<LanguagePage> {
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 64),
-                child: Card(
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+               decoration: BoxDecoration(
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(12),
+                 boxShadow: [
+                   BoxShadow(
+                     color: Color.fromRGBO(0, 0, 0, 0.05),
+                     blurRadius: 6.0,
+                     spreadRadius: 2.0,
+                     offset: Offset(0.0, 0.0),
+                   ),
+                 ],
+               ),
                   child: ListTile(
                     title: const Text('Bahasa Indonesia', style: LanguagePageStyle.selection),
                     trailing: Visibility(
@@ -87,7 +111,7 @@ class _LanguagePageState extends State<LanguagePage> {
                   ),
                 ),
               ),
-            ),
+
             SizedBox(
               width: double.infinity,
               height: 55,

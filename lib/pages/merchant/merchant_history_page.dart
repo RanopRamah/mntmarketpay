@@ -28,7 +28,7 @@ class _MerchantHistoryPageState extends State<MerchantHistoryPage> {
                       Container(
                         padding: EdgeInsets.only(left: 30, right: 30,top: 30),
                         width: double.infinity,
-                        height: 182,
+                        height: 150,
                         decoration: BoxDecoration(
                             color: Color(0xff458EDE),
                             image: DecorationImage(
