@@ -32,14 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => const AdminWithdrawPage(214761, 'Hahah'))));
+    Timer(const Duration(seconds: 2), () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => const AdminNavBar())));
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Ngapa Anjing', style: TextStyle(color: Colors.black54, fontSize: 23)),
+        child: Text('MNTMarket Pay', style: TextStyle(color: Colors.black54, fontSize: 23)),
       ),
     );
   }
