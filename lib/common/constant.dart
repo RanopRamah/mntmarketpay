@@ -219,3 +219,20 @@ class AdminPageStrings {
   static const title = 'Top Up Dashboard';
   static const submit = 'Top-Up';
 }
+
+/* --  SplashScreen  -- */
+
+class SplashScreenItem {
+  static const indosat = 'assets/images/indosat.png';
+  static const splashBg = 'assets/images/login-bg.png';
+  static const spashBg2 = 'assets/images/splash-bg.png';
+  static const si = 'assets/images/si.png';
+  static const wakaf = 'assets/images/wakaf.png';
+  static const apakek = 'Powered by';
+  static const TextStyle style = TextStyle(
+    color: Color(0xFF000000),
+    fontFamily: Fonts.mainFamily,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+  );
+}

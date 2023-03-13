@@ -26,7 +26,7 @@ class _AdminTopupPageState extends State<AdminTopupPage> {
             children: [
               Image.asset('assets/images/back_home.png'),
               Container(
-                margin: const EdgeInsets.only(top: 77, left: 23, right: 25),
+                margin: const EdgeInsets.only(top: 77, left: 23, right: 25, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start  ,
                   children: [
@@ -288,7 +288,7 @@ class _AdminTopupPageState extends State<AdminTopupPage> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(13),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color.fromRGBO(0, 0, 0, 0.10),
                               blurRadius: 6.0,

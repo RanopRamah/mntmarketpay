@@ -98,6 +98,9 @@ flutter:
      - assets/images/submit.png
      - assets/images/login-bg.png
      - assets/images/indosat.png
+     - assets/images/splash-bg.png
+     - assets/images/si.png
+     - assets/images/wakaf.png
      - assets/images/trash.png
 
 
