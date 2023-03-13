@@ -92,6 +92,7 @@ flutter:
      - assets/images/amount_bg.png
      - assets/images/topupnav.png
      - assets/images/transaction.png
+     - assets/images/detaildot.png
      - assets/images/trade.png
      - assets/images/search-all.png
      - assets/images/country-code.png
