@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
+import 'package:mntmarketpay/domain/usecases/authentication.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +10,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final phone = TextEditingController();
+  final auth = AuthenticationImpl();
+
+  @override
+  void initState() {
+    auth.checkLogin(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +70,15 @@ class _LoginPageState extends State<LoginPage> {
                           suffixIcon: Padding(
                               padding: const EdgeInsets.all(4),
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  auth.authenticate(phone.text, context);
+                                },
                                 child: Image.asset(LoginPageImage.submit, width: 55.63, height: 37),
                               )
                           ),
                         ),
                         keyboardType: TextInputType.number,
+                        controller: phone,
                       ),
                     ),
                     const SizedBox(height: 20),
