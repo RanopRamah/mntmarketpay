@@ -1,3 +1,3 @@
 class Helper {
-  static const api = 'mnt.dreampay.id/api';
+  static const api = 'mnt.dreampay.id';
 }
