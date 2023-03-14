@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
-import 'package:mntmarketpay/pages/merchant/merchant_history_page.dart';
-import 'package:mntmarketpay/pages/merchant/merchant_home_page.dart';
-import 'package:mntmarketpay/pages/merchant/merchant_profile_page.dart';
-import 'package:mntmarketpay/pages/merchant/merchant_withdraw.dart';
+import 'package:mntmarketpay/pages/merchant/main-pages/merchant_history_page.dart';
+import 'package:mntmarketpay/pages/merchant/main-pages/merchant_home_page.dart';
+import 'package:mntmarketpay/pages/merchant/main-pages/merchant_profile_page.dart';
+import 'package:mntmarketpay/pages/merchant/main-pages/merchant_withdraw.dart';
 
 class SellerNavbar extends StatefulWidget {
   const SellerNavbar({Key? key}) : super(key: key);
