@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
+import 'package:mntmarketpay/domain/entities/user.dart';
 
-Widget SearchAccount() {
+Widget searchAccount(Future<List<Users>> user) {
   return Container(
-
     width: double.infinity,
     height: 378,
     decoration: BoxDecoration(
@@ -22,7 +22,6 @@ Widget SearchAccount() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-
           padding: EdgeInsets.only(left: 30,top: 20),
           child: Text(
             'Account List',
@@ -51,138 +50,65 @@ Widget SearchAccount() {
               prefixIcon: Icon(Icons.search)),
         ),
         Container(
-            padding: EdgeInsets.only(right: 15, left: 15),
+            padding: const EdgeInsets.only(right: 15, left: 15),
             height: 190,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom:
-                            BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const <Widget>[
-                            SizedBox(
-                              width: 150,
-                              child: Text(
-                                  'Nana Tasus Maulana',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AdminPage.accountName
-                              ),),
-                            Text(
-                                '081287138898',
-                                style: AdminPage.accountNumber
-                            ),
-                          ],
-                        ),
+            child: FutureBuilder(
+              future: user,
+              builder: (ctx, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, int i) {
+                      return Container(
+                          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  bottom:
+                                  BorderSide(width: 2, color: Color(0xffe9e9e9)))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 150,
+                                    child: Text(
+                                        snapshot.data![i].nama,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AdminPage.accountName
+                                    ),),
+                                  Text(
+                                      snapshot.data![i].noHp,
+                                      style: AdminPage.accountNumber
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                width: 39,
+                                height: 39,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(width: 1,color: Color(0xffd8d8d8))
+                                ),
+                                child: Image.asset('assets/images/detaildot.png'),
+                              )
+                            ],
+                          )
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('${snapshot.error}'));
+                }
 
-
-                        Container(
-                          width: 39,
-                          height: 39,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(width: 1,color: Color(0xffd8d8d8))
-                          ),
-                          child: Image.asset('assets/images/detaildot.png'),
-                        )
-                      ],
-                    )
-
-                ),
-                Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom:
-                            BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const <Widget>[
-                            SizedBox(
-                              width: 150,
-                              child: Text(
-                                  'Didit Ghaffar',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AdminPage.accountName
-                              ),),
-                            Text(
-                                '081287138898',
-                                style: AdminPage.accountNumber
-                            ),
-                          ],
-                        ),
-
-                      Container(
-                        width: 39,
-                      height: 39,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(width: 1,color: Color(0xffd8d8d8))
-                        ),
-                        child: Image.asset('assets/images/detaildot.png'),
-                      )
-                      ],
-                    )
-
-                ),
-                Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom:
-                            BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const <Widget>[
-                            SizedBox(
-                              width: 150,
-                              child: Text(
-                                  'Daniel Agustian',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AdminPage.accountName
-                              ),),
-                            Text(
-                                '081287138898',
-                                style: AdminPage.accountNumber
-                            ),
-                          ],
-                        ),
-
-
-                        Container(
-                          width: 39,
-                          height: 39,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(width: 1,color: Color(0xffd8d8d8))
-                          ),
-                          child: Image.asset('assets/images/detaildot.png'),
-                        )
-                      ],
-                    )
-
-                ),
-
-              ],
-            )),
-        SizedBox(
+                return const Center(child: CircularProgressIndicator());
+              },
+            )
+        ),
+       const SizedBox(
           height: 69,
         ),
-
-
       ],
     ),
   );

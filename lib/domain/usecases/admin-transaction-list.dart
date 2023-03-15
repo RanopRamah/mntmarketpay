@@ -12,9 +12,12 @@ import '../entities/user.dart';
 class FetchAdminTransactionListImpl {
   static final _host = Uri.https(Helper.api, '/');
 
-  Future<List<Transaction>> fetchAdminTransaction() async {
+  Future<List<Transaction>> fetchAdminTransaction(String token) async {
     final response = await http.get(
-      _host.replace(path: '/admin/transaction-list'),
+      _host.replace(path: '/api/admin/transaction-simple-list'),
+      headers: <String, String> {
+        'Authorization': 'Bearer $token'
+      }
     );
 
     if (response.statusCode == 200) {

@@ -20,10 +20,11 @@ class AdminHomePage extends StatefulWidget {
 
 class _AdminHomePageState extends State<AdminHomePage> {
   Future<Admin>? _admin;
+  final admin = FetchAdminImpl();
 
   @override
   initState() {
-    _admin = FetchAdminImpl().fetchAdmin();
+    _admin = admin.fetchAdmin();
     super.initState();
   }
 

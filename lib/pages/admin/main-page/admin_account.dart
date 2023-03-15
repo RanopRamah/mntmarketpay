@@ -1,41 +1,50 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mntmarketpay/domain/entities/user.dart';
+import 'package:mntmarketpay/domain/usecases/user-list.dart';
 import 'package:mntmarketpay/pages/admin/widget/account-widget/searchaccount.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminAccountPage extends StatefulWidget {
-  const AdminAccountPage({super.key,});
+  const AdminAccountPage(this.bearer, {super.key}): super();
+
+  final String bearer;
 
   @override
   State<AdminAccountPage> createState() => _AdminAccountPageState();
 
 }
 
-String _selectedType = 'B';
-final TextEditingController _nama = TextEditingController();
-final TextEditingController _noHp = TextEditingController();
-final TextEditingController _pin = TextEditingController();
-
 class _AdminAccountPageState extends State<AdminAccountPage> {
+  String _selectedType = 'B';
+  final TextEditingController _nama = TextEditingController();
+  final TextEditingController _noHp = TextEditingController();
+  final TextEditingController _pin = TextEditingController();
+
+  late Future<List<Users>> _users;
+  final user = AdminUserListImpl();
+
+  @override
+  void initState() {
+    _users = user.fetchUsers(widget.bearer);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:SingleChildScrollView(
         child: Container(
-        padding: EdgeInsets.only(top: 40,left: 20,right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-child: form()),
-            SizedBox(
-              height: 30,
-            ),
-            SearchAccount()
-          ],
+          padding: const EdgeInsets.only(top: 40,left: 20,right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: form()),
+              const SizedBox(height: 30),
+              searchAccount(_users),
+            ],
+          ),
         ),
-      ),
       )
     );
   }
