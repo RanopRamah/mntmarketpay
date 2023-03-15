@@ -4,8 +4,8 @@ class Admin {
   final dynamic totalSeller;
   final dynamic totalWithdraw;
 
-  const Admin(
-      {required this.totalSaldo,
+  const Admin({
+        required this.totalSaldo,
         required this.totalSeller,
         required this.totalBuyer,
         required this.totalWithdraw});

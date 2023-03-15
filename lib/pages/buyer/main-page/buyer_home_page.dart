@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/inventory.dart';
+import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/topup-history.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/transaction.dart';
+import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/withdraw-history.dart';
 
 class BuyerHomePage extends StatefulWidget {
   const BuyerHomePage({
@@ -120,7 +121,14 @@ SizedBox(
 ),
 
                       TransactionHistory(),
-
+SizedBox(
+  height: 15,
+),
+                            TopupHistory(),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            WithdrawHistory()
                           ],
                         ),
                       )

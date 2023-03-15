@@ -6,6 +6,7 @@ import 'package:mntmarketpay/pages/admin/widget/home-widget/accounthistory.dart'
 import 'package:mntmarketpay/pages/admin/widget/home-widget/list_transaction_admin.dart';
 import 'package:mntmarketpay/pages/admin/widget/home-widget/topup_withdraw.dart';
 import '../../../common/constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mntmarketpay/domain/usecases/fetch-admin.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -24,6 +25,20 @@ class _AdminHomePageState extends State<AdminHomePage> {
   initState() {
     _admin = FetchAdminImpl().fetchAdmin();
     super.initState();
+  }
+
+  late SharedPreferences prefs;
+  String? phone;
+  String? name;
+  String? id;
+
+  Future<void> setValue() async {
+    prefs = await SharedPreferences.getInstance();
+    phone = prefs.getString('phone_customer') ?? '111';
+    name = prefs.getString('name_customer') ?? 'id';
+    id = prefs.getString('id_customer') ?? '';
+
+
   }
 
   Widget build(BuildContext context) {
