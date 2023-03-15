@@ -4,7 +4,9 @@ import 'package:mntmarketpay/pages/admin/widget/transaction-widget/searchtransac
 import 'package:searchfield/searchfield.dart';
 
 class AdminTopupPage extends StatefulWidget {
-  const AdminTopupPage({super.key,});
+  const AdminTopupPage(this.bearer, {super.key}) : super();
+
+  final String bearer;
 
   @override
   State<AdminTopupPage> createState() => _AdminTopupPageState();

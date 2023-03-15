@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class AdminScanPage extends StatefulWidget {
-  const AdminScanPage({super.key,});
+  const AdminScanPage(this.bearer, {super.key}) : super();
+
+  final String bearer;
 
   @override
   State<AdminScanPage> createState() => _AdminScanPageState();

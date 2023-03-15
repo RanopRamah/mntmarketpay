@@ -5,9 +5,9 @@ import 'package:mntmarketpay/pages/admin/widget/transaction-widget/searchtransac
 import '../../../common/constant.dart';
 
 class AdminTransactionPage extends StatefulWidget {
-  const AdminTransactionPage({
-    super.key,
-  });
+  const AdminTransactionPage(this.bearer, {super.key}) : super();
+
+  final String bearer;
 
   @override
   State<AdminTransactionPage> createState() => _AdminTransactionPageState();

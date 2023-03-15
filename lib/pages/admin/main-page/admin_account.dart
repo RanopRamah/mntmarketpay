@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mntmarketpay/domain/entities/user.dart';
+import 'package:mntmarketpay/domain/usecases/admin/add_account.dart';
 import 'package:mntmarketpay/domain/usecases/admin/user-list.dart';
 import 'package:mntmarketpay/pages/admin/widget/account-widget/searchaccount.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,6 +24,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
 
   late Future<List<Users>> _users;
   final user = AdminUserListImpl();
+  final add = AddAccountImpl();
 
   @override
   void initState() {
@@ -33,7 +35,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 40,left: 20,right: 20),
           child: Column(
@@ -193,7 +195,6 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
                 ],
               ),
             ),
-
             Flexible(
               flex: 1,
               child: Row(
@@ -218,9 +219,11 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
               ),
             ),
           ]),
-     
           TextButton(
               onPressed: () {
+                setState(() {
+                  add.addAccount(context, widget.bearer, _noHp.text, _nama.text, _pin.text, _selectedType);
+                });
               },
               child: Container(
                   width: double.infinity,

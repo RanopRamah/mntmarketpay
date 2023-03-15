@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mntmarketpay/common/constant.dart';
 import 'package:mntmarketpay/domain/entities/admin.dart';
+import 'package:mntmarketpay/domain/entities/transaction.dart';
 import 'package:mntmarketpay/pages/admin/widget/home-widget/accounthistory.dart';
 import 'package:mntmarketpay/pages/admin/widget/home-widget/list_transaction_admin.dart';
 import 'package:mntmarketpay/pages/admin/widget/home-widget/topup_withdraw.dart';
@@ -10,21 +11,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mntmarketpay/domain/usecases/admin/fetch-admin.dart';
 
 class AdminHomePage extends StatefulWidget {
-  const AdminHomePage({
-    super.key,
-  });
+  const AdminHomePage(this.bearer, {super.key}) : super();
+
+  final String bearer;
 
   @override
   State<AdminHomePage> createState() => _AdminHomePageState();
 }
 
 class _AdminHomePageState extends State<AdminHomePage> {
-  Future<Admin>? _admin;
+  late Future<Admin> _admin;
+  late Future<List<Transaction>> transaction;
   final admin = FetchAdminImpl();
 
   @override
   initState() {
-    _admin = admin.fetchAdmin();
+    _admin = admin.fetchAdmin(widget.bearer);
+    transaction = admin.fetchTransaction(widget.bearer);
     super.initState();
   }
 
@@ -251,8 +254,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                                         SizedBox(
                                                           width: 10,
                                                         ),
-                                                        Text(
-                                                          snapshot.data!.totalSeller,
+                                                        const Text(
+                                                          'Merchant Balance',
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               fontWeight:
@@ -293,7 +296,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                                                 width: 5,
                                                               ),
                                                               Text(
-                                                                '12,000,000',
+                                                                snapshot.data!.totalSeller,
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         20,
@@ -364,7 +367,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               ),
                               Container(
                                 height: 400,
-                                child: ListTransactionAdmin(),
+                                child: listTransactionAdmin(transaction),
                               ),
                               TextButton(
                                 onPressed: () {},

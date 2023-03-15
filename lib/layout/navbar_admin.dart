@@ -22,10 +22,10 @@ class _AdminNavBarState extends State<AdminNavBar> {
   int _selectedPage = 0;
 
   late final List<Widget> _pages = <Widget> [
-    const AdminHomePage(),
-    const AdminTransactionPage(),
-    const AdminScanPage(),
-    const AdminTopupPage(),
+    AdminHomePage(bearer!),
+    AdminTransactionPage(bearer!),
+    AdminScanPage(bearer!),
+    AdminTopupPage(bearer!),
     AdminAccountPage(bearer!),
   ];
   Future<void> setToken() async {
