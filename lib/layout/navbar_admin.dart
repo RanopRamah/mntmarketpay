@@ -4,6 +4,7 @@ import 'package:mntmarketpay/pages/admin/main-page/admin_home_page.dart';
 import 'package:mntmarketpay/pages/admin/main-page/admin_scan_page.dart';
 import 'package:mntmarketpay/pages/admin/main-page/admin_topup_page.dart';
 import 'package:mntmarketpay/pages/admin/main-page/admin_transaction_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/admin/main-page/admin_account.dart';
 
@@ -16,14 +17,29 @@ class AdminNavBar extends StatefulWidget {
 }
 
 class _AdminNavBarState extends State<AdminNavBar> {
+  late SharedPreferences _prefs;
+  String? bearer;
   int _selectedPage = 0;
-  static const List<Widget> _pages = <Widget> [
-    AdminHomePage(),
-    AdminTransactionPage(),
-    AdminScanPage(),
-    AdminTopupPage(),
-    AdminAccountPage(),
+
+  late final List<Widget> _pages = <Widget> [
+    const AdminHomePage(),
+    const AdminTransactionPage(),
+    const AdminScanPage(),
+    const AdminTopupPage(),
+    AdminAccountPage(bearer!),
   ];
+  Future<void> setToken() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bearer = _prefs.getString('token') ?? 'bearer';
+    });
+  }
+
+  @override
+  void initState() {
+    setToken();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +96,10 @@ class _AdminNavBarState extends State<AdminNavBar> {
     );
   }
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     setState(() {
       _selectedPage = index;
     });
+    await setToken();
   }
 }

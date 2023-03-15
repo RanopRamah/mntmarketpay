@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mntmarketpay/pages/language_page.dart';
+import 'package:mntmarketpay/pages/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BuyerProfilePage extends StatefulWidget {
   const BuyerProfilePage({super.key,});
@@ -10,6 +12,8 @@ class BuyerProfilePage extends StatefulWidget {
 }
 
 class _BuyerProfilePageState extends State<BuyerProfilePage> {
+  late SharedPreferences _prefs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -323,37 +327,53 @@ SizedBox(
         SizedBox(
           height: 15,
         ),
-        Container(
-                    height: 58,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.05),
-                            blurRadius: 6.0,
-                            spreadRadius: 2.0,
-                            offset: Offset(0.0, 0.0),
-                          ),
-                        ],
-                        color: Colors.white
+        GestureDetector(
+          onTap: () {
+            setState(() async {
+              _prefs = await SharedPreferences.getInstance();
+              _prefs.remove('id');
+              _prefs.remove('nama');
+              _prefs.remove('no_hp');
+              _prefs.remove('tipe');
+              _prefs.remove('created_at');
+              _prefs.remove('updated_at');
+              _prefs.remove('token');
+              _prefs.setBool('is_login', false);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => LoginPage()));
+            });
+          },
+          child:  Container(
+              height: 58,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                      blurRadius: 6.0,
+                      spreadRadius: 2.0,
+                      offset: Offset(0.0, 0.0),
                     ),
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/images/logout.png',width: 24,height: 24,),
-                        SizedBox(width: 10,),
-                        Text('Logout',style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'DM Sans',
-                            color: Color(0xffB83333)
-                        ),),
-                      ],
-                    ),
-                  )
-                  )
+                  ],
+                  color: Colors.white
+              ),
+              padding: EdgeInsets.all(10),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/logout.png',width: 24,height: 24,),
+                    SizedBox(width: 10,),
+                    Text('Logout',style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'DM Sans',
+                        color: Color(0xffB83333)
+                    ),),
+                  ],
+                ),
+              )
+          ),
+        ),
           ],
 
         ),

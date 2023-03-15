@@ -13,7 +13,7 @@ class FetchAdminImpl {
   Future<Admin> fetchAdmin() async {
 
     final response = await http.get(
-      _host.replace(path: '/admin'),
+      _host.replace(path: '/api/admin'),
     );
 
     if (response.statusCode == 200) {

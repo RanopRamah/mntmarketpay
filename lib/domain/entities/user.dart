@@ -3,7 +3,6 @@ class Users {
   final dynamic nama;
   final dynamic noHp;
   final dynamic tipe;
-  final dynamic token;
   final dynamic createdAt;
   final dynamic updatedAt;
 
@@ -12,7 +11,6 @@ class Users {
     required this.nama,
     required this.noHp,
     required this.tipe,
-    required this.token,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -23,7 +21,6 @@ class Users {
       nama: json['nama'],
       noHp: json['no_hp'],
       tipe: json['tipe'],
-      token: json['token'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
     );
