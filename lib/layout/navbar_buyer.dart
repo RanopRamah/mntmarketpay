@@ -5,6 +5,7 @@ import 'package:mntmarketpay/pages/buyer/main-page/buyer_home_page.dart';
 import 'package:mntmarketpay/pages/buyer/main-page/buyer_withdraw_page.dart';
 import 'package:mntmarketpay/pages/buyer/main-page/buyer_profile_page.dart';
 import 'package:mntmarketpay/pages/buyer/main-page/buyer_scan_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BuyerNavBar extends StatefulWidget {
   const BuyerNavBar({Key? key}) : super(key: key);
@@ -14,15 +15,24 @@ class BuyerNavBar extends StatefulWidget {
 }
 
 class _BuyerNavBarState extends State<BuyerNavBar> {
+  late SharedPreferences _prefs;
+  String? bearer;
   int _selectedPage = 0;
-  static const List<Widget> _pages = <Widget> [
-    BuyerHomePage(),
+
+   late final List<Widget> _pages = <Widget> [
+    BuyerHomePage(bearer!, bearer: '',),
     BuyerHistoryPage(),
     BuyerScanPage(),
     BuyerWithdrawPage(),
     BuyerProfilePage(),
   ];
 
+  Future<void> setToken() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bearer = _prefs.getString('token') ?? 'bearer';
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

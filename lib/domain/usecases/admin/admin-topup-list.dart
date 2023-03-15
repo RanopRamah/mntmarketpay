@@ -6,8 +6,8 @@ import 'package:mntmarketpay/domain/entities/topup.dart';
 
 import 'package:mntmarketpay/domain/helper/constant.dart';
 
-import '../entities/admin.dart';
-import '../entities/user.dart';
+import '../../entities/admin.dart';
+import '../../entities/user.dart';
 
 class FetchTopupListImpl {
   static final _host = Uri.https(Helper.api, '/');

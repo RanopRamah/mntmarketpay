@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:mntmarketpay/domain/helper/constant.dart';
 
-import '../entities/admin.dart';
+import '../../entities/admin.dart';
 
 class FetchAdminImpl {
   static final _host = Uri.https(Helper.api, '/');

@@ -7,7 +7,7 @@ import 'package:mntmarketpay/pages/admin/widget/home-widget/list_transaction_adm
 import 'package:mntmarketpay/pages/admin/widget/home-widget/topup_withdraw.dart';
 import '../../../common/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mntmarketpay/domain/usecases/fetch-admin.dart';
+import 'package:mntmarketpay/domain/usecases/admin/fetch-admin.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({

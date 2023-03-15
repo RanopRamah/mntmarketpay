@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mntmarketpay/domain/entities/user.dart';
-import 'package:mntmarketpay/domain/usecases/user-list.dart';
+import 'package:mntmarketpay/domain/usecases/admin/user-list.dart';
 import 'package:mntmarketpay/pages/admin/widget/account-widget/searchaccount.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

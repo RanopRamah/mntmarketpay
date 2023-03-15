@@ -6,8 +6,8 @@ import 'package:mntmarketpay/domain/entities/withdraw.dart';
 
 import 'package:mntmarketpay/domain/helper/constant.dart';
 
-import '../entities/admin.dart';
-import '../entities/user.dart';
+import '../../entities/admin.dart';
+import '../../entities/user.dart';
 
 class FetchWithdrawListImpl {
   static final _host = Uri.https(Helper.api, '/');
