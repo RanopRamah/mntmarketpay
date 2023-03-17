@@ -19,12 +19,12 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
   String? bearer;
   int _selectedPage = 0;
 
-  late final List<Widget> _pages = <Widget> [
-    const BuyerHomePage(),
-    const BuyerHistoryPage(),
-    const BuyerScanPage(),
-    const BuyerWithdrawPage(),
-    const BuyerProfilePage(),
+   late final List<Widget> _pages = <Widget> [
+    BuyerHomePage(bearer!),
+    BuyerHistoryPage(),
+    BuyerScanPage(),
+    BuyerWithdrawPage(bearer!),
+    BuyerProfilePage(bearer!),
   ];
 
   Future<void> setToken() async {
@@ -39,7 +39,6 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
     setToken();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,10 +94,9 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
     );
   }
 
-  void _onItemTapped(int index) async {
+  void _onItemTapped(int index) {
     setState(() {
       _selectedPage = index;
     });
-    await setToken();
   }
 }

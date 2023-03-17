@@ -31,19 +31,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
     super.initState();
   }
 
-  late SharedPreferences prefs;
-  String? phone;
-  String? name;
-  String? id;
-
-  Future<void> setValue() async {
-    prefs = await SharedPreferences.getInstance();
-    phone = prefs.getString('phone_customer') ?? '111';
-    name = prefs.getString('name_customer') ?? 'id';
-    id = prefs.getString('id_customer') ?? '';
-
-
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
