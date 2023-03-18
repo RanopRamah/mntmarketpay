@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/withdraw-history.dart';
 import 'package:mntmarketpay/pages/buyer/widget/withdraw-topup-widget/topup-search.dart';
 import 'package:mntmarketpay/pages/buyer/widget/withdraw-topup-widget/withdraw-search.dart';
 
+import '../../../domain/entities/buyer.dart';
+import '../../../domain/usecases/buyer/fetch-buyer.dart';
+
 class BuyerWithdrawPage extends StatefulWidget {
-  const BuyerWithdrawPage({
-    super.key,
-  });
+  const BuyerWithdrawPage(this.bearer, {super.key}): super();
+
+  final String bearer;
+
 
   @override
   State<BuyerWithdrawPage> createState() => _BuyerWithdrawPageState();
@@ -15,7 +20,14 @@ class BuyerWithdrawPage extends StatefulWidget {
 
 class _BuyerWithdrawPageState extends State<BuyerWithdrawPage>
     with TickerProviderStateMixin {
-  @override
+  late Future<Buyer> _buyer;
+final buyer = BuyerImpl();
+
+@override
+void initState() {
+  _buyer = buyer.fetchBuyer(widget.bearer);
+  super.initState();
+}
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
 
@@ -150,66 +162,89 @@ class _BuyerWithdrawPageState extends State<BuyerWithdrawPage>
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                    height: 97,
-                    padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.10),
-                          blurRadius: 6.0,
-                          spreadRadius: 2.0,
-                          offset: Offset(0.0, 0.0),
+
+                FutureBuilder(
+                  future: _buyer ,
+                  builder: (context,snapshot){
+                  if (snapshot.hasData){
+                    return        Container(
+                        height: 97,
+                        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.10),
+                              blurRadius: 6.0,
+                              spreadRadius: 2.0,
+                              offset: Offset(0.0, 0.0),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Column(children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/images/wallet.png',
-                            width: 12,
-                            height: 10,
+                        child: Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/wallet.png',
+                                width: 12,
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Balance',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xffaaaaaa)),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: 10,
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                'Rp',
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xff868383)),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                snapshot.data!.saldo,
+                                style: TextStyle(
+                                    fontSize: 31,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'DM Sans',
+                                    color: Color(0xff000000)),
+                              ),
+                            ],
                           ),
-                          Text(
-                            'Balance',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xffaaaaaa)),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Rp',
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff868383)),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '12,000,000',
-                            style: TextStyle(
-                                fontSize: 31,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                        ],
-                      ),
-                    ])),
+                        ]));
+                  }
+    else if (snapshot.hasError) {
+    return Text('${snapshot.error}');
+    }
+    return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    Center(
+    child: LoadingAnimationWidget
+        .staggeredDotsWave(
+    color: Colors.black,
+    size: 40,
+    ))
+    ]);
+
+                    },
+                ),
+
 
                 SizedBox(
                   height: 20,
