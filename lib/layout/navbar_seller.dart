@@ -4,6 +4,7 @@ import 'package:mntmarketpay/pages/merchant/main-pages/merchant_history_page.dar
 import 'package:mntmarketpay/pages/merchant/main-pages/merchant_home_page.dart';
 import 'package:mntmarketpay/pages/merchant/main-pages/merchant_profile_page.dart';
 import 'package:mntmarketpay/pages/merchant/main-pages/merchant_withdraw.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SellerNavbar extends StatefulWidget {
   const SellerNavbar({Key? key}) : super(key: key);
@@ -13,14 +14,33 @@ class SellerNavbar extends StatefulWidget {
 }
 
 class _SellerNavbarState extends State<SellerNavbar> {
+  late SharedPreferences _prefs;
+  String? bearer;
+  String? name;
+  String? phone;
   int _selectedPage = 0;
 
-  static const List<Widget> _pages = <Widget> [
-    MerchantHomePage(),
-    MerchantHistoryPage(),
-    MerchantWithdrawPage(),
-    MerchantProfilePage(),
+  late final List<Widget> _pages = <Widget> [
+    MerchantHomePage(bearer!, name!, phone!),
+    const MerchantHistoryPage(),
+    const MerchantWithdrawPage(),
+    const MerchantProfilePage(),
   ];
+
+  Future<void> setValue() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bearer = _prefs.getString('token') ?? 'bearer';
+      name = _prefs.getString('nama');
+      phone = _prefs.getString('no_hp');
+    });
+  }
+
+  @override
+  void initState() {
+    setValue();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +90,10 @@ class _SellerNavbarState extends State<SellerNavbar> {
     );
   }
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     setState(() {
       _selectedPage = index;
     });
+    await setValue();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mntmarketpay/domain/entities/transaction.dart';
 
-Widget TransactionHistory() {
+Widget transactionHistory(Future<List<Transaction>> tr) {
   return Container(
-
     width: double.infinity,
     height: 313,
     decoration: BoxDecoration(
@@ -206,10 +206,9 @@ Widget TransactionHistory() {
                     ],
                   ),
                 ),
-
               ],
             )),
-TextButton(onPressed: (){}, child: Container(
+        TextButton(onPressed: (){}, child: Container(
   width: double.infinity,
   height: 46,
   child: Center(
