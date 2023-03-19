@@ -35,179 +35,79 @@ Widget transactionHistory(Future<List<Transaction>> tr) {
         SizedBox(
           height: 10,
         ),
-        Container(
-            padding: EdgeInsets.only(right: 15, left: 15),
-            height: 190,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom:
-                              BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'IBox',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                          Text(
-                            '25 March - 19.08',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff807878)),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Rp',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                          Text(
-                            '1,460,000',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom:
-                          BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'PASTRIP',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                          Text(
-                            '25 March - 19.08',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff807878)),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Rp',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                          Text(
-                            '1,460,000',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom:
-                          BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 120,
-                          child: Text(
-                            'StrongBot Shop',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),),
-                          Text(
-                            '25 March - 19.08',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff807878)),
-                          ),
-                        ],
-                      ),
-                      Container(
-                      child: SingleChildScrollView(
-                          child:Row(
-                        children: <Widget>[
-                          Text(
-                            'Rp',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                          Text(
-                            '70,000,000',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'DM Sans',
-                                color: Color(0xff000000)),
-                          ),
-                        ],
-                      ))
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            )),
+        FutureBuilder(
+          future: tr,
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                  padding: const EdgeInsets.only(right: 15, left: 15),
+                  height: 190,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (BuildContext context, int i) {
+                      return Container(
+                        padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom:
+                                BorderSide(width: 2, color: Color(0xffe9e9e9)))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data![i].pengirim,
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'DM Sans',
+                                      color: Color(0xff000000)),
+                                ),
+                                Text(
+                                  snapshot.data![i].createdAt,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'DM Sans',
+                                      color: Color(0xff807878)),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                const Text(
+                                  'Rp',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'DM Sans',
+                                      color: Color(0xff000000)),
+                                ),
+                                Text(
+                                  snapshot.data![i].nominal,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'DM Sans',
+                                      color: Color(0xff000000)),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ));
+            } else if (snapshot.hasError) {
+              return Center(child: Text('${snapshot.error}'));
+            }
+
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
         TextButton(onPressed: (){}, child: Container(
   width: double.infinity,
   height: 46,

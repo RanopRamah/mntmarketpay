@@ -1,20 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mntmarketpay/domain/entities/transaction.dart';
+import 'package:mntmarketpay/domain/usecases/seller/transaction_history.dart';
 import 'package:mntmarketpay/pages/merchant/widget/merchant-history-widget/merchant_transactionlist.dart';
 
 
-
-
 class MerchantHistoryPage extends StatefulWidget {
-  const MerchantHistoryPage({
-  super.key,
-  });
+  const MerchantHistoryPage(this.bearer, this.name, {super.key}) : super();
+
+  final String name;
+  final String bearer;
 
   @override
   State<MerchantHistoryPage> createState() => _MerchantHistoryPageState();
 }
 
 class _MerchantHistoryPageState extends State<MerchantHistoryPage> {
+  late Future<List<Transaction>> tr;
+  final _transaction = SellerTransactions();
+
+  @override
+  void initState() {
+    tr = _transaction.fetchTransaction(widget.bearer);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +51,8 @@ class _MerchantHistoryPageState extends State<MerchantHistoryPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const <Widget>[
-                                    Text(
+                                  children: <Widget>[
+                                    const Text(
                                       'Good Morning,',
                                       style: TextStyle(
                                         fontFamily: 'DM Sans',
@@ -52,8 +62,8 @@ class _MerchantHistoryPageState extends State<MerchantHistoryPage> {
                                       ),
                                     ),
                                     Text(
-                                      'Janji Jiwa - IOH',
-                                      style: TextStyle(
+                                      widget.name,
+                                      style: const TextStyle(
                                         fontFamily: 'DM Sans',
                                         fontWeight: FontWeight.w700,
                                         fontSize: 32,
@@ -75,18 +85,17 @@ class _MerchantHistoryPageState extends State<MerchantHistoryPage> {
                             ]
                         ),
                       ),
-                      SizedBox(
+                       const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Column(
                           children: [
-                            MerchantTransactionList()
+                            merchantTransactionList(tr),
                           ],
                         ),
                       )
-
                     ]
                 )
             )
