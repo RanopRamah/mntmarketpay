@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mntmarketpay/domain/entities/topup.dart';
 import 'package:mntmarketpay/domain/entities/transaction.dart';
+import 'package:mntmarketpay/domain/entities/withdraw.dart';
+import 'package:mntmarketpay/domain/usecases/buyer/buyer-topup-list.dart';
 import 'package:mntmarketpay/domain/usecases/buyer/buyer-transaction-list.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/topup-history.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/transaction.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-home-widget/withdraw-history.dart';
 
 import '../../../domain/entities/buyer.dart';
+
+import '../../../domain/usecases/buyer/buyer-withdraw-list.dart';
 import '../../../domain/usecases/buyer/fetch-buyer.dart';
+import '../../../domain/usecases/buyer/buyer-transaction-list.dart';
 
 class BuyerHomePage extends StatefulWidget {
-  const BuyerHomePage(this.bearer, {super.key}): super();
+  const BuyerHomePage(this.bearer, this.name, this.phone, {super.key}): super();
 
   final String bearer;
+  final String name;
+  final String phone;
 
   @override
   State<BuyerHomePage> createState() => _BuyerHomePageState();
@@ -22,16 +30,33 @@ class BuyerHomePage extends StatefulWidget {
 
 class _BuyerHomePageState extends State<BuyerHomePage> {
   late Future<Buyer> _buyer;
-  final buyer = BuyerImpl();
+  final buyer = IndexBuyer();
+  late Future<List<Transaction>> _tr;
+  final _transaction = BuyerTransactionsList();
+  late Future<List<TopUp>> _tp;
+  final _topup = BuyerTopupList();
+  late Future<List<Withdraw>> _wd;
+  final _withdraw = BuyerWithdrawList();
 
   @override
   void initState() {
-    _buyer = buyer.fetchBuyer(widget.bearer);
+setValue();
     super.initState();
+  }
+
+  Future<void> setValue() async {
+    setState(() {
+      _buyer = buyer.getBuyer(widget.bearer);
+      _tr = _transaction.BuyerTransaction(widget.bearer);
+      _tp = _topup.BuyerTopUp(widget.bearer);
+      _wd = _withdraw.BuyerWithdraw(widget.bearer);
+    });
   }
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        body: RefreshIndicator(
+        onRefresh: setValue,
+        child : SingleChildScrollView(
           child: FutureBuilder(
             future: _buyer,
             builder: (context, snapshot) {
@@ -58,8 +83,8 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: const <Widget>[
-                                        Text(
+                                      children:  <Widget>[
+                                       const Text(
                                           'Good Morning,',
                                           style: TextStyle(
                                             fontFamily: 'DM Sans',
@@ -69,8 +94,8 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                                           ),
                                         ),
                                         Text(
-                                          'Raffi Nauval',
-                                          style: TextStyle(
+                                          widget.name,
+                                          style: const TextStyle(
                                             fontFamily: 'DM Sans',
                                             fontWeight: FontWeight.w700,
                                             fontSize: 32,
@@ -138,15 +163,15 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                                   height: 30,
                                 ),
 
-                                TransactionHistory(),
+                                TransactionHistory(_tr),
                                 SizedBox(
                                   height: 15,
                                 ),
-                                TopupHistory(),
+                                TopupHistory(_tp),
                                 SizedBox(
                                   height: 15,
                                 ),
-                                WithdrawHistory()
+                                WithdrawHistory(_wd)
                               ],
                             ),
                           )
@@ -174,6 +199,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
             ),
 
 
+        )
         )
     );
   }

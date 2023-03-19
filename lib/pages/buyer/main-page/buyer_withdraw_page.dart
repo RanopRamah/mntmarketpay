@@ -6,12 +6,20 @@ import 'package:mntmarketpay/pages/buyer/widget/withdraw-topup-widget/topup-sear
 import 'package:mntmarketpay/pages/buyer/widget/withdraw-topup-widget/withdraw-search.dart';
 
 import '../../../domain/entities/buyer.dart';
+import '../../../domain/entities/topup.dart';
+import '../../../domain/entities/transaction.dart';
+import '../../../domain/entities/withdraw.dart';
+import '../../../domain/usecases/buyer/buyer-topup-list.dart';
+import '../../../domain/usecases/buyer/buyer-transaction-list.dart';
+import '../../../domain/usecases/buyer/buyer-withdraw-list.dart';
 import '../../../domain/usecases/buyer/fetch-buyer.dart';
 
 class BuyerWithdrawPage extends StatefulWidget {
-  const BuyerWithdrawPage(this.bearer, {super.key}): super();
+  const BuyerWithdrawPage(this.bearer,this.name, this.phone, {super.key}): super();
 
   final String bearer;
+  final String name;
+  final String phone;
 
 
   @override
@@ -21,18 +29,34 @@ class BuyerWithdrawPage extends StatefulWidget {
 class _BuyerWithdrawPageState extends State<BuyerWithdrawPage>
     with TickerProviderStateMixin {
   late Future<Buyer> _buyer;
-final buyer = BuyerImpl();
+  final buyer = IndexBuyer();
+  late Future<List<Transaction>> _tr;
+  final _transaction = BuyerTransactionsList();
+  late Future<List<TopUp>> _tp;
+  final _topup = BuyerTopupList();
+  late Future<List<Withdraw>> _wd;
+  final _withdraw = BuyerWithdrawList();
 
-@override
-void initState() {
-  _buyer = buyer.fetchBuyer(widget.bearer);
-  super.initState();
-}
+  @override
+  void initState() {
+    setValue();
+    super.initState();
+  }
+  Future<void> setValue() async {
+    setState(() {
+      _buyer = buyer.getBuyer(widget.bearer);
+      _tr = _transaction.BuyerTransaction(widget.bearer);
+      _tp = _topup.BuyerTopUp(widget.bearer);
+      _wd = _withdraw.BuyerWithdraw(widget.bearer);
+    });
+  }
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
 
     return Scaffold(
-        body: SingleChildScrollView(
+        body:RefreshIndicator(
+       onRefresh: setValue,
+       child:  SingleChildScrollView(
             child: Container(
       color: Color(0xfffbfbfb),
       width: double.infinity,
@@ -54,8 +78,8 @@ void initState() {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
-                        Text(
+                      children:  <Widget>[
+                        const Text(
                           'Good Morning,',
                           style: TextStyle(
                             fontFamily: 'DM Sans',
@@ -65,8 +89,8 @@ void initState() {
                           ),
                         ),
                         Text(
-                          'Raffi Nauval',
-                          style: TextStyle(
+                          widget.name,
+                          style: const TextStyle(
                             fontFamily: 'DM Sans',
                             fontWeight: FontWeight.w700,
                             fontSize: 32,
@@ -135,7 +159,7 @@ void initState() {
                               height: 201,
                             ),
                             Text(
-                              'Raffi Nauval',
+                              widget.name,
                               style: TextStyle(
                                   fontFamily: 'DM Sans',
                                   fontWeight: FontWeight.w700,
@@ -146,7 +170,7 @@ void initState() {
                               height: 5,
                             ),
                             Text(
-                              '081287138898',
+                              widget.phone,
                               style: TextStyle(
                                   fontFamily: 'DM Sans',
                                   fontWeight: FontWeight.w400,
@@ -167,7 +191,8 @@ void initState() {
                   future: _buyer ,
                   builder: (context,snapshot){
                   if (snapshot.hasData){
-                    return        Container(
+                    return    Column(
+                        children: [Container(
                         height: 97,
                         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                         decoration: BoxDecoration(
@@ -226,7 +251,211 @@ void initState() {
                               ),
                             ],
                           ),
-                        ]));
+                        ])),
+
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            height: 547,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.10),
+                                    blurRadius: 6.0,
+                                    spreadRadius: 2.0,
+                                    offset: Offset(0.0, 0.0),
+                                  ),
+                                ],
+                                color: Colors.white
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(top: 5,left: 10,right: 10,bottom: 5),
+                                  width: 231,
+                                  height: 41,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color(0xffececec)
+                                  ),
+                                  child: TabBar(
+                                      controller: _tabController,
+                                      unselectedLabelStyle: TextStyle(
+
+                                          fontSize: 16,
+                                          fontFamily: 'DM Sans',
+                                          fontWeight: FontWeight.w500),
+                                      unselectedLabelColor: Color(0xffb2a9a9),
+                                      labelStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontFamily: 'DM Sans',
+                                          fontWeight: FontWeight.w500),
+                                      indicator: BoxDecoration(
+                                        color: Color(0xff5258d4),
+                                        borderRadius: BorderRadius.circular(7),
+                                      ),
+                                      tabs: <Widget>[
+                                        Tab(
+                                          text: 'Withdraw',
+                                        ),
+                                        Tab(
+                                          text: 'Top Up',
+                                        ),
+                                      ]),
+                                ),
+                                Container(
+                                  height: 466,
+                                  child:     TabBarView(controller: _tabController,
+                                      children: [
+                                        Container(
+                                          child:  Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+
+
+
+
+                                              Container(
+                                                padding: EdgeInsets.all(12),
+                                                height: 71,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(12),
+                                                    border: Border.all(
+                                                        width: 1, color: Color(0xfff6efef))),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      'Total Withdraw',
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500,
+                                                          fontFamily: 'DM Sans',
+                                                          color: Color(0xffaaaaaa)),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 3,
+                                                    ),
+                                                    Row(
+                                                      children: <Widget>[
+                                                        Text(
+                                                          'Rp',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'DM Sans',
+                                                              color: Color(0xff868383)),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          snapshot.data!.withdraw,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'DM Sans',
+                                                              color: Color(0xff000000)),
+                                                        ),
+                                                      ],
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+
+                                              WithdrawSearch(_wd)
+
+                                            ],
+                                          ),
+                                        ),
+
+                                        Container(
+                                          child:  Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+
+
+
+
+                                              Container(
+                                                padding: EdgeInsets.all(12),
+                                                height: 71,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(12),
+                                                    border: Border.all(
+                                                        width: 1, color: Color(0xfff6efef))),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      'Total TopUp',
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500,
+                                                          fontFamily: 'DM Sans',
+                                                          color: Color(0xffaaaaaa)),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 3,
+                                                    ),
+                                                    Row(
+                                                      children: <Widget>[
+                                                        Text(
+                                                          'Rp',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'DM Sans',
+                                                              color: Color(0xff868383)),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          snapshot.data!.topup,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'DM Sans',
+                                                              color: Color(0xff000000)),
+                                                        ),
+                                                      ],
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+
+                                              TopupSearch(_tp)
+
+                                            ],
+                                          ),
+                                        ),
+                                      ]),
+                                )
+
+                              ],
+                            ),
+                          )
+                        ]);
                   }
     else if (snapshot.hasError) {
     return Text('${snapshot.error}');
@@ -250,210 +479,12 @@ void initState() {
                   height: 20,
                 ),
                 
-                Container(
-padding: EdgeInsets.all(20),
-                  height: 547,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.10),
-                        blurRadius: 6.0,
-                        spreadRadius: 2.0,
-                        offset: Offset(0.0, 0.0),
-                      ),
-                    ],
-                    color: Colors.white
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: 5,left: 10,right: 10,bottom: 5),
-                        width: 231,
-                        height: 41,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Color(0xffececec)
-                        ),
-                        child: TabBar(
-                            controller: _tabController,
-                            unselectedLabelStyle: TextStyle(
 
-                                fontSize: 16,
-                                fontFamily: 'DM Sans',
-                                fontWeight: FontWeight.w500),
-                            unselectedLabelColor: Color(0xffb2a9a9),
-                            labelStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'DM Sans',
-                                fontWeight: FontWeight.w500),
-                            indicator: BoxDecoration(
-                              color: Color(0xff5258d4),
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            tabs: <Widget>[
-                              Tab(
-                                text: 'Withdraw',
-                              ),
-                              Tab(
-                                text: 'Top Up',
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        height: 466,
-                        child:     TabBarView(controller: _tabController,
-                            children: [
-                              Container(
-                                child:  Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-
-
-
-
-                                    Container(
-                                      padding: EdgeInsets.all(12),
-                                      height: 71,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(12),
-                                          border: Border.all(
-                                              width: 1, color: Color(0xfff6efef))),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            'Total Withdraw',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: 'DM Sans',
-                                                color: Color(0xffaaaaaa)),
-                                          ),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              Text(
-                                                'Rp',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: 'DM Sans',
-                                                    color: Color(0xff868383)),
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                '12,000,000',
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: 'DM Sans',
-                                                    color: Color(0xff000000)),
-                                              ),
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-
-                                     WithdrawSearch()
-
-                                  ],
-                                ),
-                              ),
-
-                              Container(
-                                child:  Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-
-
-
-
-                                    Container(
-                                      padding: EdgeInsets.all(12),
-                                      height: 71,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(12),
-                                          border: Border.all(
-                                              width: 1, color: Color(0xfff6efef))),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            'Total TopUp',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: 'DM Sans',
-                                                color: Color(0xffaaaaaa)),
-                                          ),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              Text(
-                                                'Rp',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: 'DM Sans',
-                                                    color: Color(0xff868383)),
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                '12,000,000',
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: 'DM Sans',
-                                                    color: Color(0xff000000)),
-                                              ),
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-
-                                    TopupSearch()
-
-                                  ],
-                                ),
-                              ),
-                        ]),
-                      )
-
-                    ],
-                  ),
-                )
               ],
             ),
           )
         ],
       ),
-    )));
+    ))));
   }
 }

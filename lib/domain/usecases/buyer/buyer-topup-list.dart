@@ -6,10 +6,10 @@ import 'package:mntmarketpay/domain/entities/topup.dart';
 import 'package:mntmarketpay/domain/entities/user.dart';
 import 'package:mntmarketpay/domain/helper/constant.dart';
 
-class AdminUserListImpl {
+class BuyerTopupList {
   static final _host = Uri.https(Helper.api, '/');
 
-  Future<List<TopUp>> fetchBuyerTopUp(String bearer) async {
+  Future<List<TopUp>>BuyerTopUp(String bearer) async {
     try {
       final response = await http.get(
         _host.replace(path: '/api/buyer/topup-list/'),

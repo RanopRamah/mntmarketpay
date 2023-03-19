@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mntmarketpay/domain/entities/topup.dart';
 
-Widget TopupSearch() {
+Widget TopupSearch(Future <List<TopUp>> tp) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -8,7 +10,7 @@ Widget TopupSearch() {
 
         padding: EdgeInsets.only(top: 20),
         child: Text(
-          'TopUp History',
+          'Top Up History',
           style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
@@ -33,217 +35,113 @@ Widget TopupSearch() {
       SizedBox(
         height: 10,
       ),
-      Container(
+      FutureBuilder(
+        future: tp,
+          builder: (context, snapshot) {
+            if (snapshot.hasData){
+             return Container(
 
-          height: 250,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                height:80,
-                padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                        BorderSide(width: 2, color: Color(0xffe9e9e9)))),
+                  height: 250,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int i){
+                    return Container(
+                      height:80,
+                      padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom:
+                              BorderSide(width: 2, color: Color(0xffe9e9e9)))),
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    snapshot.data![i].pengirim,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'DM Sans',
+                                        color: Color(0xff1e1e1e)),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    snapshot.data![i].createdAt,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'DM Sans',
+                                        color: Color(0xff807878)),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Rp',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'DM Sans',
+                                        color: Color(0xff1e1e1e)),
+                                  ),
+                                  Text(
+                                    snapshot.data![i].nominal,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'DM Sans',
+                                        color: Color(0xff1e1e1e)),
+                                  ),
+                                ],
+                              ),
+
+
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    );
+
+                  }
+
+
+
+
+                  ));
+            }
+            else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            } else {
+              return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                    Center(
+                        child: LoadingAnimationWidget
+                            .staggeredDotsWave(
+                          color: Colors.black,
+                          size: 40,
+                        ))
+                  ]);
+            }
+          }
 
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'KFC Sudirman',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              '25 March - 19.08',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff807878)),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              'Rp',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            Text(
-                              '1,460,000',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                          ],
-                        ),
+          )
 
 
-                      ],
-                    ),
 
-                  ],
-                ),
-              ),
-              Container(
-                height:80,
-                padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                        BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'KFC Sudirman',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              '25 March - 19.08',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff807878)),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              'Rp',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            Text(
-                              '1,460,000',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                          ],
-                        ),
-
-
-                      ],
-                    ),
-
-                  ],
-                ),
-              ),
-              Container(
-                height:80,
-                padding: EdgeInsets.only(left: 15, right: 15, bottom: 10,top: 10),
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                        BorderSide(width: 2, color: Color(0xffe9e9e9)))),
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'KFC Sudirman',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              '25 March - 19.08',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff807878)),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              'Rp',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                            Text(
-                              '1,460,000',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'DM Sans',
-                                  color: Color(0xff1e1e1e)),
-                            ),
-                          ],
-                        ),
-
-
-                      ],
-                    ),
-
-                  ],
-                ),
-              ),
-
-
-            ],
-          )),
 
     ],
 

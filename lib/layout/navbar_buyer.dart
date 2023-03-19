@@ -17,20 +17,24 @@ class BuyerNavBar extends StatefulWidget {
 class _BuyerNavBarState extends State<BuyerNavBar> {
   late SharedPreferences _prefs;
   String? bearer;
+  String? name;
+  String? phone;
   int _selectedPage = 0;
 
    late final List<Widget> _pages = <Widget> [
-    BuyerHomePage(bearer!),
-    BuyerHistoryPage(),
+    BuyerHomePage(bearer!,name!, phone!),
+    BuyerHistoryPage(bearer!,name!,phone!),
     BuyerScanPage(),
-    BuyerWithdrawPage(bearer!),
-    BuyerProfilePage(bearer!),
+    BuyerWithdrawPage(bearer!,name!,phone!),
+    BuyerProfilePage(bearer!, name!,phone!),
   ];
 
   Future<void> setToken() async {
     _prefs = await SharedPreferences.getInstance();
     setState(() {
       bearer = _prefs.getString('token') ?? 'bearer';
+      name = _prefs.getString('nama');
+      phone = _prefs.getString('no_hp');
     });
   }
 

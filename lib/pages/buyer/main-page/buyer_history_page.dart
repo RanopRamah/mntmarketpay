@@ -1,19 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/pages/buyer/widget/buyer-history-widget/transactionlist.dart';
 
+import '../../../domain/entities/buyer.dart';
+import '../../../domain/entities/transaction.dart';
+import '../../../domain/usecases/buyer/buyer-transaction-list.dart';
+import '../../../domain/usecases/buyer/fetch-buyer.dart';
+
 
 class BuyerHistoryPage extends StatefulWidget {
-  const BuyerHistoryPage({super.key,});
+  const BuyerHistoryPage(this.bearer, this.name, this.phone, {super.key,});
+
+  final String bearer;
+  final String name;
+  final String phone;
 
   @override
   State<BuyerHistoryPage> createState() => _BuyerHistoryPageState();
 }
 
 class _BuyerHistoryPageState extends State<BuyerHistoryPage> {
+  late Future<Buyer> _buyer;
+  final buyer = IndexBuyer();
+  late Future<List<Transaction>> _tr;
+  final _transaction = BuyerTransactionsList();
+
+  @override
+  void initState() {
+    setValue();
+    super.initState();
+  }
+  Future<void> setValue() async {
+    setState(() {
+      _buyer = buyer.getBuyer(widget.bearer);
+      _tr = _transaction.BuyerTransaction(widget.bearer);
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: Container(
+      body:RefreshIndicator(
+        onRefresh:   setValue,
+        child: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Container(
@@ -32,7 +63,7 @@ class _BuyerHistoryPageState extends State<BuyerHistoryPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const <Widget>[
+                        children:  <Widget>[
                           Text(
                             'Good Morning,',
                             style: TextStyle(
@@ -43,7 +74,7 @@ class _BuyerHistoryPageState extends State<BuyerHistoryPage> {
                             ),
                           ),
                           Text(
-                            'Raffi Nauval',
+                            widget.name,
                             style: TextStyle(
                               fontFamily: 'DM Sans',
                               fontWeight: FontWeight.w700,
@@ -78,13 +109,15 @@ class _BuyerHistoryPageState extends State<BuyerHistoryPage> {
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  TransactionList()
+                  TransactionList(_tr)
                 ],
               ),
             )
           ],
         ),
       ),
+              )
+      )
     );
   }
 }
