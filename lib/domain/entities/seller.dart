@@ -2,8 +2,8 @@ class Seller {
   final String saldo;
   final String transaksi;
   final String withdraw;
-  final String qrcode;
-  final String wd_qrcode;
+  final dynamic qrcode;
+  final dynamic wd_qrcode;
 
   const Seller({
     required this.saldo,

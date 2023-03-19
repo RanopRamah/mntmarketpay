@@ -22,9 +22,9 @@ class _SellerNavbarState extends State<SellerNavbar> {
 
   late final List<Widget> _pages = <Widget> [
     MerchantHomePage(bearer!, name!, phone!),
-    const MerchantHistoryPage(),
-    const MerchantWithdrawPage(),
-    const MerchantProfilePage(),
+    MerchantHistoryPage(bearer!, name!),
+    MerchantWithdrawPage(bearer!, name!, phone!),
+    MerchantProfilePage(bearer!, name!, phone!),
   ];
 
   Future<void> setValue() async {

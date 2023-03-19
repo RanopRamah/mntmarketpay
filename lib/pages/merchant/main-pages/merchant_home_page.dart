@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/domain/entities/seller.dart';
 import 'package:mntmarketpay/domain/entities/transaction.dart';
@@ -5,6 +7,7 @@ import 'package:mntmarketpay/domain/usecases/seller/index_seller.dart';
 import 'package:mntmarketpay/domain/usecases/seller/transaction_history.dart';
 
 import 'package:mntmarketpay/pages/merchant/widget/merchant-home-widget/transaction.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class MerchantHomePage extends StatefulWidget {
   const MerchantHomePage(this.bearer, this.name, this.phone, {super.key}): super();
@@ -28,6 +31,16 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
     seller = _seller.getSeller(widget.bearer);
     tr = _transaction.fetchTransaction(widget.bearer);
     super.initState();
+  }
+
+  setQr(user) {
+    var type = user['type'].toString();
+    var id = user['id'].toString();
+    var nama = user['nama'].toString();
+    var noHp = user['no_hp'].toString();
+    var data = {'nama': nama, 'no_hp': noHp, 'id' : id, 'type' : type};
+    final String jsonString = jsonEncode(data);
+    return jsonString;
   }
 
   @override
@@ -78,7 +91,6 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
                                   ],
                                 ),),
                               Container(
-
                                   width: 61,
                                   height: 61,
                                   decoration: BoxDecoration(
@@ -105,7 +117,23 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
                           ),
                           child: Column(
                             children: <Widget>[
-                              Image.asset('assets/images/test_qr.png'),
+                              const SizedBox(height: 8),
+                              FutureBuilder(
+                                future: seller,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return QrImage(
+                                      data: setQr(snapshot.data!.qrcode),
+                                      version: QrVersions.auto,
+                                      size: 200,
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Center(child: Text('${snapshot.error}'));
+                                  }
+
+                                  return const Center(child: CircularProgressIndicator());
+                                },
+                              ),
                               Text(widget.name,style: TextStyle(
                                   fontFamily: 'DM Sans',
                                   fontWeight: FontWeight.w700,
