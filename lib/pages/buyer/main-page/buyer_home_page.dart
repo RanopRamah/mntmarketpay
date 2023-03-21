@@ -163,7 +163,7 @@ setValue();
                                   height: 30,
                                 ),
 
-                                TransactionHistory(_tr),
+                                TransactionHistory(_tr, context),
                                 SizedBox(
                                   height: 15,
                                 ),

@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mntmarketpay/layout/navbar_buyer.dart';
 
 import '../../../../domain/entities/transaction.dart';
 
-Widget TransactionHistory(Future<List<Transaction>> tr) {
+Widget TransactionHistory(Future<List<Transaction>> tr, BuildContext ctx) {
   return Container(
     width: double.infinity,
     height: 354,
@@ -171,7 +172,9 @@ Widget TransactionHistory(Future<List<Transaction>> tr) {
                   ]);
             }),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(ctx, MaterialPageRoute(builder: (c) => const BuyerNavBar(index: 1)));
+            },
             child: Container(
               width: double.infinity,
               height: 46,

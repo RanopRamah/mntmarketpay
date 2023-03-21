@@ -8,7 +8,9 @@ import 'package:mntmarketpay/pages/buyer/main-page/buyer_scan_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BuyerNavBar extends StatefulWidget {
-  const BuyerNavBar({Key? key}) : super(key: key);
+  const BuyerNavBar({this.index, Key? key}) : super(key: key);
+
+  final int? index;
 
   @override
   State<BuyerNavBar> createState() => _BuyerNavBarState();
@@ -19,12 +21,12 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
   String? bearer;
   String? name;
   String? phone;
-  int _selectedPage = 0;
+  late int _selectedPage;
 
    late final List<Widget> _pages = <Widget> [
     BuyerHomePage(bearer!,name!, phone!),
     BuyerHistoryPage(bearer!,name!,phone!),
-    BuyerScanPage(),
+    const BuyerScanPage(),
     BuyerWithdrawPage(bearer!,name!,phone!),
     BuyerProfilePage(bearer!, name!,phone!),
   ];
@@ -40,6 +42,7 @@ class _BuyerNavBarState extends State<BuyerNavBar> {
 
   @override
   void initState() {
+    _selectedPage = widget.index ?? 0;
     setToken();
     super.initState();
   }
