@@ -85,6 +85,7 @@ flutter:
      - assets/images/success.png
      - assets/images/failed.png
      - assets/images/back_qr.png
+     - assets/images/bg-detail.png
      - assets/images/test_qr.png
      - assets/images/backspace.png
      - assets/images/store-icon.png

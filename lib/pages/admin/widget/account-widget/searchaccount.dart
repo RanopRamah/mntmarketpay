@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mntmarketpay/common/constant.dart';
 import 'package:mntmarketpay/domain/entities/user.dart';
+import 'package:mntmarketpay/pages/admin/detail-page/detail_account_page.dart';
 
-Widget searchAccount(Future<List<Users>> user) {
+Widget searchAccount(Future<List<Users>> user, BuildContext ctx) {
   return Container(
     width: double.infinity,
     height: 378,
@@ -32,11 +33,10 @@ Widget searchAccount(Future<List<Users>> user) {
                 color: Color(0xff000000)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        TextField(
-
+        const TextField(
           decoration: InputDecoration(
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(width: 1,color: Color(0xfff1f1f1))
@@ -51,12 +51,13 @@ Widget searchAccount(Future<List<Users>> user) {
         ),
         Container(
             padding: const EdgeInsets.only(right: 15, left: 15),
-            height: 190,
+            height: 235,
             child: FutureBuilder(
               future: user,
               builder: (ctx, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
+                    itemCount: snapshot.data!.length,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, int i) {
                       return Container(
@@ -84,15 +85,24 @@ Widget searchAccount(Future<List<Users>> user) {
                                   ),
                                 ],
                               ),
-                              Container(
-                                width: 39,
-                                height: 39,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(width: 1,color: Color(0xffd8d8d8))
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(ctx, MaterialPageRoute(builder: (c) => DetailAccount(
+                                    name: snapshot.data![i].nama,
+                                    phone: snapshot.data![i].noHp,
+                                    type: snapshot.data![i].tipe,
+                                  )));
+                                },
+                                child: Container(
+                                  width: 39,
+                                  height: 39,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(width: 1,color: Color(0xffd8d8d8))
+                                  ),
+                                  child: Image.asset('assets/images/detaildot.png'),
                                 ),
-                                child: Image.asset('assets/images/detaildot.png'),
-                              )
+                              ),
                             ],
                           )
                       );
@@ -105,9 +115,6 @@ Widget searchAccount(Future<List<Users>> user) {
                 return const Center(child: CircularProgressIndicator());
               },
             )
-        ),
-       const SizedBox(
-          height: 69,
         ),
       ],
     ),

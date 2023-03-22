@@ -10,7 +10,9 @@ import '../pages/admin/main-page/admin_account.dart';
 
 
 class AdminNavBar extends StatefulWidget {
-  const AdminNavBar({Key? key}) : super(key: key);
+  const AdminNavBar({this.index, Key? key}) : super(key: key);
+
+  final int? index;
 
   @override
   State<AdminNavBar> createState() => _AdminNavBarState();
@@ -19,7 +21,7 @@ class AdminNavBar extends StatefulWidget {
 class _AdminNavBarState extends State<AdminNavBar> {
   late SharedPreferences _prefs;
   String? bearer;
-  int _selectedPage = 0;
+  late int _selectedPage;
 
   late final List<Widget> _pages = <Widget> [
     AdminHomePage(bearer!),
@@ -37,6 +39,7 @@ class _AdminNavBarState extends State<AdminNavBar> {
 
   @override
   void initState() {
+    _selectedPage = widget.index ?? 0;
     setToken();
     super.initState();
   }

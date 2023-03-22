@@ -14,7 +14,7 @@ class FetchAdminTransactionListImpl {
 
   Future<List<Transaction>> fetchAdminTransaction(String token) async {
     final response = await http.get(
-      _host.replace(path: '/api/admin/transaction-simple-list'),
+      _host.replace(path: '/api/admin/transaction-list'),
       headers: <String, String> {
         'Authorization': 'Bearer $token'
       }
